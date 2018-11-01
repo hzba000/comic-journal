@@ -1,5 +1,10 @@
 language: node_js
 node_js: node
 deploy:
+  provider: heroku
   api_key:
     secure: cPCoIYT0PJ7+V8tMGyJ4S+62mBinFyDgFyWR1bH45hEw4T1rl6dCf5I0Y9ay6gWusMlxvaXEQwhCb4v92s8dC1Iy6yFJnqBAFv7mpILKLngT8PXsLs0+SFD5V5NSJve0Z/nokZJP4LsaMOwMCRoEYuio9XGferqTvST5wUo+iRXv/Mt6l1V0j66WnxhVrQEio1Rv0xBiHtfVO/uzvd+GMSSGY3CjsMKzItNcslNDW/tsiYlQPgT0QZb3jMarkIxQrWALqHQ6+UqEZQifPonXADK/dZpPDJtms6xeRU7f5zdZ+pf68wETYxrVVHyNyqdCQ3V4bfh/UnxdhS9LMlMXTa1s/hA1vmYMGQQnnvYZs6IrzetRhUCvDjsTKcL+pRH71C/qqD0QwdYmxzARGwGuLBHLNC9K+KIPxHhPTMdrX4kznBfQ6JO3WvunLzdSEL8u6UbfsTJ/YmM0zZn25T3QRkBxROb7tf3KoQ8rVKJ7kaFEJd9XqsJOc0sLJzqT5B9s6WwnrmanxtFz6sMi7eLNS48jxLFVqZZb4ULGV1VLZCE7Qqnsg7+nNp7JFzusjiPbmUgHM1MvCR60jQZf5iJuMk5/FM2JmY5+MUZcbjvlyjBy0aOYbucBXUMX2vKSEupsIHJ9pz36CvyUrnXWJo2shNns6Gis9ORhPvAKAgdMrvw=
+  app: haunted-corpse-92171
+  on:
+    repo: hzba000/comic-journal
+    branch: master
