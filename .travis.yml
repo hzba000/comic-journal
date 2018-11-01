@@ -4,6 +4,6 @@ deploy:
   provider: heroku
   api_key:
     secure: DAZt0hEwwTKH8+FVjTK+tEENaHKX2EVqcbYM2IXeR1x+5xeRNhUQfgb1C2FSYkKOYTzFKipPsSMNUWd02Uf4SptcbG0uOI2gNf5GDXa4xIvE8LzUu/bXAD+ao0cUeA9O1S5AuhsEuvlqgUXzmo+i6ts+jmkV5ynUj/46UyMBW1IsVwvy+gUTClU4bMo0SxOOe+mUOfMAqD8TgnxjGW45zEETXHi0N34DnhHaJrVLVWwKVRkorUFGamLHzCVY+tegwU9vugGRFX30TqbrwCwUMdkduoTQFQ/VjLifLKfVCDGaDbK60CGxtYTrjfZlaH/Z6fjfq6AEUm2JdMyle9pRDm3FZ3pE3ZOav2rMX2vebpAWPL6OJNWVkrfMXM8qxM7DYJMvFhctoG6278Go7RiUbYBpTmjQeTPwg3Y9zSzzOTTB5SY+Xc2G170am9Tb+6BlQxgM7HlPKhSiX8GgmChVaAgte1UtpCda4E6CTBRBv0irU2Hr9KN2id6yN+mIieD0fBAjy9GF94jC9CFnGvWNKeQbLsRug61UMqRvSOD/ThkadpQ8CF7hrsFPfpQtg/ynzeoQq9pYjLpZll+elkIiJ4zF2hjwTUW4UMmPsyq3lNsafb4+XVvgszpONq8spknyTvptqwXDrANFFl5ULItV2dMjpEIVa64CPCTPvoh/Xp0=
-  app: comic-journal
+  app: ghostly-web-38988
   on:
     repo: hzba000/comic-journal
