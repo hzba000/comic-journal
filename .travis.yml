@@ -7,3 +7,5 @@ deploy:
   app: comic-journal
   on:
     repo: hzba000/comic-journal
+
+    
