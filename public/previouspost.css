@@ -1,0 +1,27 @@
+
+header{
+    text-align:center;
+}
+
+.Holder{
+    background-color: gray;
+    height: 600px;
+    text-align: center;
+}
+
+#TextHolder{
+    height:300px;
+    width: 500px;
+}
+
+label{
+    display:block;
+}
+
+fieldset{
+    display:inline-block;
+}
+
+.previousPost{
+    display:inline-block;
+}

@@ -1,5 +1,11 @@
 const express = require('express');
 const app = express();
+
+//log HTTP layer
+const morgan = require('morgan');
+app.use(morgan('common'));
+
+//sets up static file server
 app.use(express.static('public'));
 
 let server;

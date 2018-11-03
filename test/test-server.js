@@ -17,19 +17,19 @@ describe("Initial Test", function(){
 
     it("should return status code 200", function(){
         return chai
-        .request(app)
-        .get("/")
-        .then(function(res){
-            expect(res).to.have.status(200);
+            .request(app)
+            .get("/")
+            .then(function(res){
+                expect(res).to.have.status(200);
         });
     });
 
     it("should be html", function(){
         return chai
-        .request(app)
-        .get("/")
-        .then(function(res){
-            expect(res).to.be.html
+            .request(app)
+            .get("/")
+            .then(function(res){
+                expect(res).to.be.html
         })
     })
 });
