@@ -130,7 +130,7 @@ let MOCK_USER_POSTS = {
   //This is the callback function for getDataApi, which takes data (array of objects)
   //For every post object in the array (called posts), append the text to body
   function displayDataApi(data){
-        $('#TextHolder').text(
+        $('#TextHolder').val(
          `${data.posts[data.posts.length-1].text}`
     )
     counter = data.posts.length -1
@@ -140,12 +140,12 @@ let MOCK_USER_POSTS = {
             if(counter <= 0){
             counter = 0;
 
-            $('#TextHolder').text(
+            $('#TextHolder').val(
                 `${data.posts[0].text}`
            )
         }
             else{
-                $('#TextHolder').text(
+                $('#TextHolder').val(
                     `${data.posts[counter].text}`
             )
         }
@@ -156,13 +156,13 @@ let MOCK_USER_POSTS = {
         $('.nextPost').click(function(){
             counter++;
             if(counter >= data.posts.length){
-                $('#TextHolder').text(
+                $('#TextHolder').val(
                     `${data.posts[data.posts.length-1].text}`
                )
                counter = data.posts.length -1;
             }
             else{
-            $('#TextHolder').text(
+            $('#TextHolder').val(
                 `${data.posts[counter].text}`
            )
         }
@@ -209,15 +209,15 @@ let MOCK_USER_POSTS = {
 
   //Event listeners for buttons
   $('.editPost').click(function(){
-      $('#TextHolder').removeAttr('readonly');
+      $('#TextHolder').removeAttr('disabled');
   })
 
   $('.updatePost').click(function(){
-    $('#TextHolder').attr('readonly', true);
+    $('#TextHolder').attr('disabled', true);
 })
 
 
 
-
-
+let test = $('#TextHolder').val();
+console.log(test);
 
