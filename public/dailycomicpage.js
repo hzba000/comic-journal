@@ -2,7 +2,7 @@ let MOCK_USER_POSTS = {
   "posts":[
       {   
           "id": "1111111",
-          "username": "jack_simpson",
+          "email": "jack_simpson@gmail.com",
           "comicId": 2100,
           "text": "lorem",
           "publishedAt": 210000
@@ -10,7 +10,7 @@ let MOCK_USER_POSTS = {
 
       {   
           "id": "2222222",
-          "username": "andre_rodriguez",
+          "email": "andre_rodriguez@gmail.com",
           "comicId": 2200,
           "text": "lorem",
           "publishedAt": 220000
@@ -18,7 +18,7 @@ let MOCK_USER_POSTS = {
 
       {   
           "id": "3333333",
-          "username": "tim_campbell",
+          "email": "tim_campbell@gmail.com",
           "comicId": 2300,
           "text": "lorem",
           "publishedAt": 230000
@@ -26,7 +26,7 @@ let MOCK_USER_POSTS = {
 
       {   
           "id": "4444444",
-          "username": "tim_campbell",
+          "email": "tim_campbell@gmail.com",
           "comicId": 2400,
           "text": "lorem",
           "publishedAt": 240000
