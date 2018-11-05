@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const { DATABASE_URL, PORT } = require('./config');
+const {Post} = require('./models');
+
 
 
 //log HTTP layer
@@ -12,6 +14,18 @@ app.use(morgan('common'));
 
 //sets up static file server
 app.use(express.static('public'));
+
+app.get('/posts', (req, res) => {
+  Post
+    .find()
+    .then(posts => {
+      res.json(posts.map(post => post.serialize()));
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: 'something went terribly wrong' });
+    });
+});
 
 let server;
 
