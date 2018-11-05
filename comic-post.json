@@ -1,0 +1,38 @@
+
+{
+"posts":
+    [
+        {   
+            "id": "1111111",
+            "username": "jack_simpson",
+            "comicId": 2100,
+            "text": "lorem",
+            "publishedAt": 210000
+        },
+
+        {   
+            "id": "2222222",
+            "username": "andre_rodriguez",
+            "comicId": 2200,
+            "text": "lorem",
+            "publishedAt": 220000
+        },
+
+        {   
+            "id": "3333333",
+            "username": "tim_campbell",
+            "comicId": 2300,
+            "text": "lorem",
+            "publishedAt": 230000
+        },
+
+        {   
+            "id": "4444444",
+            "username": "tim_campbell",
+            "comicId": 2400,
+            "text": "lorem",
+            "publishedAt": 240000
+        }
+    ]
+}
+
