@@ -14,6 +14,13 @@ app.use(morgan('common'));
 
 //sets up static file server
 app.use(express.static('public'));
+// app.use('Access-Control-Allow-Origin','localhost/posts');
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
+
 
 app.get('/posts', (req, res) => {
   Post
