@@ -1,139 +1,141 @@
 counter = 0;
 
-let MOCK_USER_POSTS = {
-    "posts":[
-        {   
-            "id": "1111111",
-            "username": "bonnie hayland",
-            "comicId": 2100,
-            "text": "0 Text",
-            "publishedAt": 210000
-        },
+// let MOCK_USER_POSTS = {
+//     "posts":[
+//         {   
+//             "id": "1111111",
+//             "username": "bonnie hayland",
+//             "comicId": 2100,
+//             "text": "0 Text",
+//             "publishedAt": 210000
+//         },
   
-        {   
-            "id": "2222222",
-            "username": "bonnie_hayland",
-            "comicId": 2200,
-            "text": "1 Text",
-            "publishedAt": 220000
-        },
+//         {   
+//             "id": "2222222",
+//             "username": "bonnie_hayland",
+//             "comicId": 2200,
+//             "text": "1 Text",
+//             "publishedAt": 220000
+//         },
   
-        {   
-            "id": "3333333",
-            "username": "bonnie_hayland",
-            "comicId": 2300,
-            "text": "2 Text",
-            "publishedAt": 230000
-        },
+//         {   
+//             "id": "3333333",
+//             "username": "bonnie_hayland",
+//             "comicId": 2300,
+//             "text": "2 Text",
+//             "publishedAt": 230000
+//         },
   
-        {   
-            "id": "4444444",
-            "username": "bonnie_hayland",
-            "comicId": 2400,
-            "text": "3 Text",
-            "publishedAt": 240000
-        },
-        {   
-            "id": "4444444",
-            "username": "bonnie_hayland",
-            "comicId": 2400,
-            "text": "4 Text",
-            "publishedAt": 240000
-        },
-        {   
-            "id": "4444444",
-            "username": "bonnie_hayland",
-            "comicId": 2400,
-            "text": "5 Text",
-            "publishedAt": 240000
-        },
-        {   
-            "id": "4444444",
-            "username": "bonnie_hayland",
-            "comicId": 2400,
-            "text": "6 Text",
-            "publishedAt": 240000
-        },
-        {   
-            "id": "4444444",
-            "username": "bonnie_hayland",
-            "comicId": 2400,
-            "text": "7 Text",
-            "publishedAt": 240000
-        },
-        {   
-            "id": "4444444",
-            "username": "bonnie_hayland",
-            "comicId": 2400,
-            "text": "8 Text",
-            "publishedAt": 240000
-        },
-        {   
-            "id": "4444444",
-            "username": "bonnie_hayland",
-            "comicId": 2400,
-            "text": "9 Text",
-            "publishedAt": 240000
-        },
-        {   
-            "id": "4444444",
-            "username": "bonnie_hayland",
-            "comicId": 2400,
-            "text": "10 Text",
-            "publishedAt": 240000
-        },
-        {   
-            "id": "4444444",
-            "username": "bonnie_hayland",
-            "comicId": 2400,
-            "text": "11 Text",
-            "publishedAt": 240000
-        },
-        {   
-            "id": "4444444",
-            "username": "bonnie_hayland",
-            "comicId": 2400,
-            "text": "12 Text",
-            "publishedAt": 240000
-        },
-        {   
-            "id": "4444444",
-            "username": "bonnie_hayland",
-            "comicId": 2400,
-            "text": "13 Text",
-            "publishedAt": 240000
-        },
-        {   
-            "id": "4444444",
-            "username": "bonnie_hayland",
-            "comicId": 2400,
-            "text": "14 Text",
-            "publishedAt": 240000
-        },
-        {   
-            "id": "4444444",
-            "username": "bonnie_hayland",
-            "comicId": 2400,
-            "text": "15 Text",
-            "publishedAt": 240000
-        },
-    ]
-  }
+//         {   
+//             "id": "4444444",
+//             "username": "bonnie_hayland",
+//             "comicId": 2400,
+//             "text": "3 Text",
+//             "publishedAt": 240000
+//         },
+//         {   
+//             "id": "4444444",
+//             "username": "bonnie_hayland",
+//             "comicId": 2400,
+//             "text": "4 Text",
+//             "publishedAt": 240000
+//         },
+//         {   
+//             "id": "4444444",
+//             "username": "bonnie_hayland",
+//             "comicId": 2400,
+//             "text": "5 Text",
+//             "publishedAt": 240000
+//         },
+//         {   
+//             "id": "4444444",
+//             "username": "bonnie_hayland",
+//             "comicId": 2400,
+//             "text": "6 Text",
+//             "publishedAt": 240000
+//         },
+//         {   
+//             "id": "4444444",
+//             "username": "bonnie_hayland",
+//             "comicId": 2400,
+//             "text": "7 Text",
+//             "publishedAt": 240000
+//         },
+//         {   
+//             "id": "4444444",
+//             "username": "bonnie_hayland",
+//             "comicId": 2400,
+//             "text": "8 Text",
+//             "publishedAt": 240000
+//         },
+//         {   
+//             "id": "4444444",
+//             "username": "bonnie_hayland",
+//             "comicId": 2400,
+//             "text": "9 Text",
+//             "publishedAt": 240000
+//         },
+//         {   
+//             "id": "4444444",
+//             "username": "bonnie_hayland",
+//             "comicId": 2400,
+//             "text": "10 Text",
+//             "publishedAt": 240000
+//         },
+//         {   
+//             "id": "4444444",
+//             "username": "bonnie_hayland",
+//             "comicId": 2400,
+//             "text": "11 Text",
+//             "publishedAt": 240000
+//         },
+//         {   
+//             "id": "4444444",
+//             "username": "bonnie_hayland",
+//             "comicId": 2400,
+//             "text": "12 Text",
+//             "publishedAt": 240000
+//         },
+//         {   
+//             "id": "4444444",
+//             "username": "bonnie_hayland",
+//             "comicId": 2400,
+//             "text": "13 Text",
+//             "publishedAt": 240000
+//         },
+//         {   
+//             "id": "4444444",
+//             "username": "bonnie_hayland",
+//             "comicId": 2400,
+//             "text": "14 Text",
+//             "publishedAt": 240000
+//         },
+//         {   
+//             "id": "4444444",
+//             "username": "bonnie_hayland",
+//             "comicId": 2400,
+//             "text": "15 Text",
+//             "publishedAt": 240000
+//         },
+//     ]
+//   }
   
   //This will eventually pull data from API, but right now it pulls data from the object above
   //This will change in this way: instead of setting a timeout and returning mock data, it will use jQuery to make an AJAX call to our endpoint.
   function getDataApi(callbackFn){
-    setTimeout(function(){
-        callbackFn(MOCK_USER_POSTS)}, 100);
+    const url = `/posts`
+    console.log(url);
+    $.getJSON(url, callbackFn)
     }
   
   //This is the callback function for getDataApi, which takes data (array of objects)
   //For every post object in the array (called posts), append the text to body
   function displayDataApi(data){
+      console.log(data);
         $('#TextHolder').val(
-         `${data.posts[data.posts.length-1].text}`
+         `${data[data.length-1].content}`
     )
-    counter = data.posts.length -1
+    counter = data.length -1
 
         $('.previousPost').click(function(){
             counter--;
@@ -141,12 +143,12 @@ let MOCK_USER_POSTS = {
             counter = 0;
 
             $('#TextHolder').val(
-                `${data.posts[0].text}`
+                `${data[0].content}`
            )
         }
             else{
                 $('#TextHolder').val(
-                    `${data.posts[counter].text}`
+                    `${data[counter].content}`
             )
         }
         console.log(counter);
@@ -155,15 +157,15 @@ let MOCK_USER_POSTS = {
 
         $('.nextPost').click(function(){
             counter++;
-            if(counter >= data.posts.length){
+            if(counter >= data.length){
                 $('#TextHolder').val(
-                    `${data.posts[data.posts.length-1].text}`
+                    `${data[data.length-1].content}`
                )
-               counter = data.posts.length -1;
+               counter = data.length -1;
             }
             else{
             $('#TextHolder').val(
-                `${data.posts[counter].text}`
+                `${data[counter].content}`
            )
         }
         console.log(counter);
