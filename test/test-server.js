@@ -100,7 +100,46 @@ describe('blog posts API resource', function () {
         });
     });
   });
+
+
+describe('POST endpoint', function(){
+  it('should add a new post', function(){
+    const newPost = {
+      comicId: faker.random.number(),
+      email: faker.internet.email(),
+      content: faker.lorem.paragraph()
+    };
+
+    return chai.request(app)
+        .post('/posts')
+        .send(newPost)
+        .then(function (res){
+          res.should.have.status(201);
+          res.should.be.json;
+          res.body.should.be.a('object');
+          res.body.should.include.keys(
+            'id', 'comicId', 'email', 'content', 'publishedAt');
+          res.body.id.should.not.be.null;
+          res.body.publishedAt.should.not.be.null;
+          res.body.comicId.should.equal(newPost.comicId);
+          res.body.email.should.equal(newPost.email);
+          res.body.content.should.equal(newPost.content);
+          return Post.findById(res.body.id);
+        })
+        .then(function(post){
+          post.comicId.should.equal(newPost.comicId);
+          post.email.should.equal(newPost.email);
+          post.content.should.equal(newPost.content);
+        });
+  });
 });
+});
+
+
+
+
+
+
 
 describe("Initial Test for server", function(){
     before(function(){

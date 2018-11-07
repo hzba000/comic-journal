@@ -20,6 +20,7 @@ app.use(express.static('public'));
 //   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 //   next();
 // });
+app.use(express.json());
 
 
 app.get('/posts', (req, res) => {
@@ -32,6 +33,41 @@ app.get('/posts', (req, res) => {
       console.error(err);
       res.status(500).json({ error: 'something went terribly wrong' });
     });
+});
+
+app.get('/posts/:id', (req, res) => {
+  Post
+    .findById(req.params.id)
+    .then(post => res.json(post.serialize()))
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: 'something went horribly awry' });
+    });
+});
+
+app.post('/posts', (req, res) => {
+  const requiredFields = ['comicId', 'content', 'email'];
+  for (let i = 0; i < requiredFields.length; i++) {
+    const field = requiredFields[i];
+    if (!(field in req.body)) {
+      const message = `Missing \`${field}\` in request body`;
+      console.error(message);
+      return res.status(400).send(message);
+    }
+  }
+
+  Post
+    .create({
+      comicId: req.body.comicId,
+      content: req.body.content,
+      email: req.body.email
+    })
+    .then(Post => res.status(201).json(Post.serialize()))
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: 'Something went wrong' });
+    });
+
 });
 
 let server;
