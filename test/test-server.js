@@ -133,6 +133,35 @@ describe('POST endpoint', function(){
         });
   });
 });
+
+describe('PUT endpoint', function () {
+  it('should update fields you send over', function () {
+    const updateData = {
+      comicId: faker.random.number(),
+      content: faker.lorem.paragraph(),
+      email: faker.internet.email()
+    };
+
+    return Post
+      .findOne()
+      .then(post => {
+        updateData.id = post.id;
+
+        return chai.request(app)
+          .put(`/posts/${post.id}`)
+          .send(updateData);
+      })
+      .then(res => {
+        res.should.have.status(204);
+        return Post.findById(updateData.id);
+      })
+      .then(post => {
+        post.comicId.should.equal(updateData.comicId);
+        post.content.should.equal(updateData.content);
+        post.email.should.equal(updateData.email);
+      });
+  });
+});
 });
 
 

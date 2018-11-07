@@ -70,6 +70,27 @@ app.post('/posts', (req, res) => {
 
 });
 
+app.put('/posts/:id', (req,res) =>{
+  if(!(req.params.id === req.body.id)){
+    res.status(400).json({
+      error: 'Request path id and request body values must match'
+    });
+  }
+
+  const updated = {};
+  const updateableFields = ['comicId', 'email', 'content'];
+  updateableFields.forEach(field => {
+    if(field in req.body){
+      updated[field] = req.body[field];
+    }
+  });
+
+  Post
+      .findByIdAndUpdate(req.params.id, {$set: updated}, {new:true})
+      .then(updatedPost => res.status(204).end())
+      .catch(err => res.status(500).json({message:'Something went wrong'}))
+});
+
 let server;
 
 // this function connects to our database, then starts the server
