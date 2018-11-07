@@ -162,13 +162,31 @@ describe('PUT endpoint', function () {
       });
   });
 });
+
+describe('DELETE endpoint', function () {
+  it('should delete a post by id', function () {
+
+    let post;
+
+    return Post
+      .findOne()
+      .then(_post => {
+        post = _post;
+        return chai.request(app).delete(`/posts/${post.id}`);
+      })
+      .then(res => {
+        res.should.have.status(204);
+        return Post.findById(post.id);
+      })
+      .then(_post => {
+        should.not.exist(_post);
+      });
+  });
 });
 
 
 
-
-
-
+});
 
 describe("Initial Test for server", function(){
     before(function(){

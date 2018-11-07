@@ -91,6 +91,22 @@ app.put('/posts/:id', (req,res) =>{
       .catch(err => res.status(500).json({message:'Something went wrong'}))
 });
 
+app.delete('/posts/:id', (req,res)=>{
+    Post  
+      .findByIdAndRemove(req.params.id)
+      .then(() => {
+        console.log(`Deleted post with id \`${req.params.id}\``);
+        res.status(204).end();
+      })
+
+})
+
+app.use('*', function (req, res) {
+  res.status(404).json({ message: 'Not Found' });
+});
+
+
+
 let server;
 
 // this function connects to our database, then starts the server
