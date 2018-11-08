@@ -216,6 +216,25 @@ counter = 0;
 
   $('.updatePost').click(function(){
     $('#TextHolder').attr('disabled', true);
+    $('#TextHolderForm').on('submit', function(event){
+        event.preventDefault();
+            const userSubmission = $('#TextHolder').val();
+            const data = { id:"5be39250c12d472a08829bf6", comicId: `123456`, content: `${userSubmission}`, email: `happy@happy.com` };
+            $.ajax({
+                url: `/posts/${data.id}`,
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                data: JSON.stringify(data),
+                success: (response) => {
+                    console.log("UPDATED!");
+                },
+    
+                error: (err) => {
+                    console.log("NOT UPDATED");
+                }
+    
+            });
+    })
 })
 
 

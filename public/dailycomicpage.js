@@ -37,9 +37,11 @@ let MOCK_USER_POSTS = {
 //This will eventually pull data from API, but right now it pulls data from the object above
 //This will change in this way: instead of setting a timeout and returning mock data, it will use jQuery to make an AJAX call to our endpoint.
 function getDataApi(callbackFn){
-  setTimeout(function(){
-      callbackFn(MOCK_USER_POSTS)}, 100);
-  }
+    const url = `/posts`
+    $.getJSON(url, callbackFn)
+
+    }    
+  
 
 //This is the callback function for getDataApi, which takes data (array of objects)
 //For every post object in the array (called posts), append the text to body
@@ -87,6 +89,28 @@ window.onclick = function(event) {
 //DROP DOWN MENU STUFF END!
 
 //Event listeners for buttons
-$('.submitButton').on('submit', function(){
-    window.alert("Thanks, your post has been submitted")
+
+//When submit form, make a POST to db
+$('#TextHolderForm').on('submit', function(event){
+    event.preventDefault();
+        const userSubmission = $('#TextHolder').val();
+        const data = { comicId: `123456`, content: `${userSubmission}`, email: `happy@happy.com` };
+        $.ajax({
+            url: '/posts',
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            data: JSON.stringify(data),
+            success: (response) => {
+                console.log("POSTED!");
+            },
+
+            error: (err) => {
+                console.log("NOT POSTED");
+            }
+
+        });
+   
+
+    
 })
+
