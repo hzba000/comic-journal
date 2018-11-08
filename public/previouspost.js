@@ -237,8 +237,26 @@ counter = 0;
     })
 })
 
+$('.deletePost').click(function(){
+    $('#TextHolderForm').on('submit', function(event){
+        event.preventDefault();
+            const data = { id:"5be3aa6317c8ec1ac0b442be"};
+            $.ajax({
+                url: `/posts/${data.id}`,
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                data: JSON.stringify(data),
+                success: (response) => {
+                    console.log("DELETED!");
+                },
+    
+                error: (err) => {
+                    console.log("NOT DELETED");
+                }
+    
+            });
+    })
+})
 
 
-let test = $('#TextHolder').val();
-console.log(test);
 
