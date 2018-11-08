@@ -1,4 +1,5 @@
 counter = 0;
+let userData = null;
 
 // let MOCK_USER_POSTS = {
 //     "posts":[
@@ -132,6 +133,7 @@ counter = 0;
   //For every post object in the array (called posts), append the text to body
   function displayDataApi(data){
       console.log(data);
+      userData = data;
         $('#TextHolder').val(
          `${data[data.length-1].content}`
     )
@@ -214,35 +216,13 @@ counter = 0;
       $('#TextHolder').removeAttr('disabled');
   })
 
-  $('.updatePost').click(function(){
-    $('#TextHolder').attr('disabled', true);
+  //Felicia said that this is sending data twice, not necessary
+  $('.deletePost').click(function(){
     $('#TextHolderForm').on('submit', function(event){
         event.preventDefault();
-            const userSubmission = $('#TextHolder').val();
-            const data = { id:"5be39250c12d472a08829bf6", comicId: `123456`, content: `${userSubmission}`, email: `happy@happy.com` };
+            const data = { id:`${userData[counter].id}`};
             $.ajax({
-                url: `/posts/${data.id}`,
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                data: JSON.stringify(data),
-                success: (response) => {
-                    console.log("UPDATED!");
-                },
-    
-                error: (err) => {
-                    console.log("NOT UPDATED");
-                }
-    
-            });
-    })
-})
-
-$('.deletePost').click(function(){
-    $('#TextHolderForm').on('submit', function(event){
-        event.preventDefault();
-            const data = { id:"5be3aa6317c8ec1ac0b442be"};
-            $.ajax({
-                url: `/posts/${data.id}`,
+                url: `/posts/${userData[counter].id}`,
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' },
                 data: JSON.stringify(data),
@@ -257,6 +237,49 @@ $('.deletePost').click(function(){
             });
     })
 })
+
+  $('.updatePost').click(function(){
+    $('#TextHolder').attr('disabled', true);
+    $('#TextHolderForm').on('submit', function(event){
+        event.preventDefault();
+            const userSubmission = $('#TextHolder').val();
+            const data = { id:`${userData[counter].id}`, comicId: `123456`, content: `${userSubmission}`, email: `happy@happy.com` };
+            $.ajax({
+                url: `/posts/${data.id}`,
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                data: JSON.stringify(data),
+                success: (response) => {
+                    console.log("UPDATED!");
+                },
+    
+                error: (err) => {
+                    console.log("NOT UPDATED");
+                }
+            });
+    })
+})
+
+// $('.deletePost').click(function(){
+//     $('#TextHolderForm').on('submit', function(event){
+//         event.preventDefault();
+//             const data = { id:"5be3aa6317c8ec1ac0b442be"};
+//             $.ajax({
+//                 url: `/posts/${data.id}`,
+//                 method: 'DELETE',
+//                 headers: { 'Content-Type': 'application/json' },
+//                 data: JSON.stringify(data),
+//                 success: (response) => {
+//                     console.log("DELETED!");
+//                 },
+    
+//                 error: (err) => {
+//                     console.log("NOT DELETED");
+//                 }
+    
+//             });
+//     })
+// })
 
 
 
