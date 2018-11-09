@@ -132,6 +132,17 @@ let userData = null;
   //This is the callback function for getDataApi, which takes data (array of objects)
   //For every post object in the array (called posts), append the text to body
   function displayDataApi(data){
+      function compare(a,b){
+          if (a.publishedAt < b.publishedAt){
+              return -1;
+          }
+          if(a.publishedAt > b.publishedAt){
+              return 1;
+          }
+          return 0;
+      }
+
+      data.sort(compare);
       console.log(data);
       userData = data;
         $('#TextHolder').val(
@@ -235,6 +246,7 @@ let userData = null;
                 }
     
             });
+            $('#TextHolderForm').off('submit');
     })
 })
 
@@ -257,6 +269,7 @@ let userData = null;
                     console.log("NOT UPDATED");
                 }
             });
+            $('#TextHolderForm').off('submit');
     })
 })
 
