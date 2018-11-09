@@ -143,6 +143,7 @@ let userData = null;
       }
 
       data.sort(compare);
+
       console.log(data);
       userData = data;
         $('#TextHolder').val(
@@ -182,8 +183,26 @@ let userData = null;
            )
         }
         console.log(counter);
-
    })
+           //Format Date
+           var date = new Date(data[counter].publishedAt);
+
+           var year = date.getFullYear();
+           var month = date.getMonth()+1;
+           var day = date.getDate();
+           
+           if (day < 10) {
+             day = '0' + day;
+           }
+           if (month < 10) {
+             month = '0' + month;
+           }
+           
+           var formattedDate = month + '-' + day + '-' + year
+           console.log(formattedDate);
+           //Display Date
+           $('.date').html(formattedDate);
+           console.log(data[counter].publishedAt);
   }
 
   
