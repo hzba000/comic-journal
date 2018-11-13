@@ -7,6 +7,7 @@ const { DATABASE_URL, TEST_DATABASE_URL ,PORT } = require('./config');
 
 const { authRouter } = require('./auth/auth.router');
 const { userRouter } = require('./user/user.router');
+const { noteRouter } = require('./note/note.router');
 const { localStrategy, jwtStrategy } = require('./auth/auth.strategy');
 
 let server;
@@ -22,6 +23,7 @@ app.use(express.static('public'));
 // ROUTER SETUP
 app.use('/api/auth', authRouter); // Redirects all calls to /api/user to userRouter.
 app.use('/api/user', userRouter); // Redirects all calls to /api/user to userRouter.
+app.use('/api/note', noteRouter);
 
 app.use('*', function (req, res) {
   res.status(404).json({ message: 'Not Found' });
