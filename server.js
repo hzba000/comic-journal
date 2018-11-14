@@ -29,47 +29,70 @@ app.use('*', function (req, res) {
   res.status(404).json({ message: 'Not Found' });
 });
 
-module.exports = { runServer, app, closeServer };
+module.exports = { startServer, app, stopServer };
 
-// this function connects to our database, then starts the server
-function runServer(databaseUrl = DATABASE_URL, port = PORT) {
+function startServer(testEnv) {
+  // Remember, because the process of starting/stopping a server takes time, it's preferrable to make
+  // this asynchronous, and return a promise that'll reject/resolve depending if the process is succesful.
+
   return new Promise((resolve, reject) => {
-    mongoose.connect(databaseUrl, err => {
-      if (err) {
-        return reject(err);
+      let databaseUrl;
+
+      if (testEnv) {
+          databaseUrl = TEST_DATABASE_URL;
+      } else {
+          databaseUrl = DATABASE_URL;
       }
-      server = app.listen(port, () => {
-        console.log(`Your app is listening on port ${port}`);
-        resolve();
-      })
-        .on('error', err => {
-          mongoose.disconnect();
-          reject(err);
-        });
-    });
+      // Step 1: Attempt to connect to MongoDB with mongoose
+      mongoose.connect(databaseUrl, { useNewUrlParser: true }, err => {
+          if (err) {
+              // Step 2A: If there is an error starting mongo, log error, reject promise and stop code execution.
+              console.error(err);
+              return reject(err);
+          } else {
+              // Step 2B: Start Express server
+              server = app.listen(PORT, () => {
+                  // Step 3A: Log success message to console and resolve promise.
+                  console.log(`Express server listening on http://localhost:${PORT}`);
+                  resolve();
+              }).on('error', err => {
+                  // Step 3B: If there was a problem starting the Express server, disconnect from MongoDB immediately, log error to console and reject promise.
+                  mongoose.disconnect();
+                  console.error(err);
+                  reject(err);
+              });
+          }
+      });
   });
 }
 
-// this function closes the server, and returns a promise. we'll
-// use it in our integration tests later.
-function closeServer() {
-  return mongoose.disconnect().then(() => {
-    return new Promise((resolve, reject) => {
-      console.log('Closing server');
-      server.close(err => {
-        if (err) {
-          return reject(err);
-        }
-        resolve();
-      });
-    });
-  });
+function stopServer() {
+  // Remember, because the process of starting/stopping a server takes time, it's preferrable to make
+  // this asynchronous, and return a promise that'll reject/resolve depending if the process is succesful.
+
+  // Step 1: Disconnect from the MongoDB database using Mongoose
+  return mongoose
+      .disconnect()
+      .then(() => new Promise((resolve, reject) => {
+          // Step 2: Shut down the ExpressJS server
+          server.close(err => {
+              if (err) {
+                  // Step 3A: If an error ocurred while shutting down, print out the error to the console and resolve promise;
+                  console.error(err);
+                  return reject(err);
+              } else {
+                  // Step 3B: If the server shutdown correctly, log a success message.
+                  console.log('Express server stopped.');
+                  resolve();
+              }
+          });
+      }));
 }
 
 // if server.js is called directly (aka, with `node server.js`), this block
 // runs. but we also export the runServer command so other code (for instance, test code) can start the server as needed.
 if (require.main === module) {
-  runServer().catch(err => console.error(err));
+  startServer().catch(err => console.error(err));
 }
 
 
@@ -172,9 +195,3 @@ app.delete('/posts/:id', (req,res)=>{
       })
 
 })
-
-
-
-
-
-

@@ -3,6 +3,7 @@ const express = require('express');
 // https://www.npmjs.com/package/joi
 const Joi = require('joi');
 
+// const { HTTP_STATUS_CODES } = require('../config.js');
 const { User, UserJoiSchema } = require('./user.model.js');
 
 const userRouter = express.Router();
@@ -72,7 +73,7 @@ userRouter.get('/', (request, response) => {
         })
         .catch(error => {
             // Step 2B: If an error ocurred, return an error HTTP status code and the error in JSON format.
-            return response.status(HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR).json(error);
+            return response.status(500).json(error);
         });
 });
 // RETRIEVE ONE USER
