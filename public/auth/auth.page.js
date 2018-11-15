@@ -47,7 +47,7 @@ function onLoginSubmit(event) {
             authenticatedUser.jwtToken = response.jwtToken;
             CACHE.saveAuthenticatedUserIntoCache(authenticatedUser);
             alert('Login succesful, redirecting you to homepage ...');
-            window.open('/', '_self');
+            window.open('../dailycomicpage.html', '_self');
         },
         onError: err => {
             alert('Incorrect username or password. Please try again.');
