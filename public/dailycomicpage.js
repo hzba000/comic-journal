@@ -43,7 +43,7 @@ let MOCK_USER_POSTS = {
 
 //     }   
 
-const url = "http://cors-anywhere.herokuapp.com/https://xkcd.com//info.0.json";
+const url = `http://cors-anywhere.herokuapp.com/https://xkcd.com/${Math.floor(Math.random() * 614)}/info.0.json`;
 function getComic(){
     $.getJSON(url, displayDataApi)
 }
