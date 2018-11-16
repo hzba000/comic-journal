@@ -1,3 +1,4 @@
+let comic_image_global = null;
 let MOCK_USER_POSTS = {
   "posts":[
       {   
@@ -36,32 +37,59 @@ let MOCK_USER_POSTS = {
 
 //This will eventually pull data from API, but right now it pulls data from the object above
 //This will change in this way: instead of setting a timeout and returning mock data, it will use jQuery to make an AJAX call to our endpoint.
-function getDataApi(callbackFn){
-    const url = `/api/post`
-    $.getJSON(url, callbackFn)
+// function getDataApi(callbackFn){
+//     const url = `/api/post`
+//     $.getJSON(url, callbackFn)
 
-    }    
-  
+//     }   
+
+const url = "http://cors-anywhere.herokuapp.com/https://xkcd.com//info.0.json";
+function getComic(){
+    $.getJSON(url, displayDataApi)
+}
+
+// $(getUserNotes);
+// function getUserNotes() {
+//     $.ajax({
+//         type: 'GET',
+//         url: '/api/note',
+//         contentType: 'application/json',
+//         dataType: 'json',
+//         data: undefined,
+//         beforeSend: function (xhr) {
+//             xhr.setRequestHeader('Authorization', `Bearer ${localStorage.jwtToken}`);
+//         },
+//         success: displayDataApi,
+//         error: err => {
+//             console.error(err);
+//             if (onError) {
+//                 onError(err);
+//             }
+//         }
+//     });
+// }
+
+
 
 //This is the callback function for getDataApi, which takes data (array of objects)
 //For every post object in the array (called posts), append the text to body
 function displayDataApi(data){
     console.log(data);
-  for(index in data.posts){
-      $('body').append(
-          `<p> ${data.posts[index].text}</p>`
-      );
-  }
+    const comic_image = data.img;
+    comic_image_global = comic_image;
+    console.log(comic_image);
+    $('.ComicHome').html(`<img src = "${comic_image}" alt="cartoon strip">`);
+
 }
 
 //This feeds the callback function necessary for ajax call, which receives data
 //and process it for displaying on screen
-function feedDataToDisplay(){
-  getDataApi(displayDataApi);
-} 
+// function feedDataToDisplay(){
+//   getDataApi(displayDataApi);
+// } 
 
 //We want Ajax call to be made on page load, this does that with jquery
-$(feedDataToDisplay);
+// $(feedDataToDisplay);
 
 
 //DROP DOWN MENU STUFF
@@ -95,12 +123,16 @@ window.onclick = function(event) {
 $('#TextHolderForm').on('submit', function(event){
     event.preventDefault();
         const userSubmission = $('#TextHolder').val();
-        const data = { comicId: `123456`, content: `${userSubmission}`, email: `happy@happy.com` };
+        const data = { title: `${comic_image_global}`, content: `${userSubmission}`};
         $.ajax({
-            url: '/api/post',
+            url: '/api/note',
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
+            dataType: 'json',
             data: JSON.stringify(data),
+            beforeSend: function(xhr){
+                xhr.setRequestHeader('Authorization', `Bearer ${localStorage.jwtToken}`);
+            },
             success: (response) => {
                 console.log("POSTED!");
             },
@@ -127,8 +159,10 @@ $('#TextHolderForm').on('submit', function(event){
         } 
         
         today = mm + '/' + dd + '/' + yyyy;
-        document.write(today);
+        // document.write(today);
         console.log("today is" + today);
 
         $('.date').html(today);
+
+        $(getComic);
 

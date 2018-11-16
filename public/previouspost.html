@@ -5,12 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="dailycomicpage.css" />
-    
+    <link rel="stylesheet" type="text/css" media="screen" href="previouspost.css" />
 </head>
 <body>
     <header>
-        <div class="navbar">
+          <div class="navbar">
                 <!-- <a href="#home">Home</a>
                 <a href="#news">News</a> -->
                 <div class="dropdown">
@@ -24,30 +23,38 @@
                   </div>
                 </div> 
                 <h1> Cartoon Journal </h1>
-              </div>
+            </div>
     </header>
-        <main>
+    <main>
         <div class = Holder>
             <div class= PostHolder>
                 <form id="TextHolderForm">
                     <fieldset>
                         <legend></legend>
-                        <div class= "ComicHolder">
-                                <h2> TODAY's CARTOON </h2>
+                        <div class= ComicHolder>
                                 <h3 class="date"></h3>
                                 <div class="ComicHome"></div>
                         </div>
-                        <label for="TextHolder">My thoughts...</label>
-                        <textarea id="TextHolder"></textarea>
-                        <div>
-                            <button type="submit" class= "submitButton" onclick="location.href = 'dailyconfirmation.html'"> Submit </button>
-                        </div>
-                    </fieldset><br><br>
+                        <label for="TextHolder">My previous comments</label>
+                        <textarea id="TextHolder" disabled></textarea>
 
+                    </fieldset><br><br>
+                    <div>
+                            <button type = "button" class="editPost"> <a href="#">Edit this post</a> </button>
+                            <button type="submit" class="updatePost">Update</button>
+                            <button type="submit" class="deletePost"> Delete</button>
+                            <button type="button" class="previousPost"> <a href="#">See a previous post!</a> </button>
+                            <button type="button" class="nextPost"> <a href="#">See your next post!</a> </button>
+                            <!-- There is no link for nextPost because I don't want to give the illusion that it always goes to the current comic -->
+                    </div>
                 </form>
             </div>
         </div>
+
+
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="dailycomicpage.js"></script>
+    <script src="previouspost.js"></script>
 </body>
 </html>
