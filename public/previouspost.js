@@ -300,12 +300,15 @@ let userData = null;
     $('#TextHolderForm').on('submit', function(event){
         event.preventDefault();
             const userSubmission = $('#TextHolder').val();
-            const data = { id:`${userData[counter].id}`, content: `${userSubmission}`};
+            const data = { id:`${userData[counter].id}`, content: `${userSubmission}`, title:`${userData[counter].title}`};
             $.ajax({
-                url: `/api/note/${data.id}`,
+                url: `/api/note/${userData[counter].id}`,
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 data: JSON.stringify(data),
+                beforeSend:function(xhr){
+                    xhr.setRequestHeader('Authorization', `Bearer ${localStorage.jwtToken}`);
+                },
                 success: (response) => {
                     console.log("UPDATED!");
                 },
