@@ -87,10 +87,14 @@ function displayDataApi(data){
     // if(customURL){
     //     data.img = customURL;
     // }
+    let backup_image = data.img;
+    if(customURL){
+        data.img = customURL;
+    }
     const comic_image = data.img;
     comic_image_global = comic_image;
     console.log(comic_image);
-    $('.ComicHome').html(`<img src = "${customURL}" alt="cartoon strip" onerror="this.src = '${comic_image}'">`);
+    $('.ComicHome').html(`<img src = "${customURL}" alt="cartoon strip" onerror="this.src = '${backup_image}'">`);
     //The above line causes an error, but I need it to validate the correct image
 
 }

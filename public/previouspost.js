@@ -126,7 +126,7 @@ let userData = null;
   function getDataApi() {
     $.ajax({
         type: 'GET',
-        url: '/api/note',
+        url: `/api/note`,
         contentType: 'application/json',
         dataType: 'json',
         data: undefined,
@@ -336,6 +336,7 @@ $('.listView').click(function(){
 
 
 
+
 // if (noteSummary.length > 120) {
 //     noteSummary = `${note.content.substring(0, 120)}...`;
 // }
@@ -362,3 +363,4 @@ $('.listView').click(function(){
 // })
 
 
+history.replaceState(undefined, undefined, "#hash_value")
