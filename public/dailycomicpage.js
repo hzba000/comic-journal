@@ -42,8 +42,17 @@ let MOCK_USER_POSTS = {
 //     $.getJSON(url, callbackFn)
 
 //     }   
+let customURL = null;
+let url = `http://cors-anywhere.herokuapp.com/https://xkcd.com/${Math.floor(Math.random() * 614)}/info.0.json`;
 
-const url = `http://cors-anywhere.herokuapp.com/https://xkcd.com/${Math.floor(Math.random() * 614)}/info.0.json`;
+function customCheck(){
+    customURL = prompt("If you want to use your own comic, feed me a comic image url, otherwise press OK");
+    console.log(customURL);
+    getComic()
+}
+
+
+
 function getComic(){
     $.getJSON(url, displayDataApi)
 }
@@ -75,10 +84,14 @@ function getComic(){
 //For every post object in the array (called posts), append the text to body
 function displayDataApi(data){
     console.log(data);
+    // if(customURL){
+    //     data.img = customURL;
+    // }
     const comic_image = data.img;
     comic_image_global = comic_image;
     console.log(comic_image);
-    $('.ComicHome').html(`<img src = "${comic_image}" alt="cartoon strip">`);
+    $('.ComicHome').html(`<img src = "${customURL}" alt="cartoon strip" onerror="this.src = '${comic_image}'">`);
+    //The above line causes an error, but I need it to validate the correct image
 
 }
 
@@ -164,5 +177,7 @@ $('#TextHolderForm').on('submit', function(event){
 
         $('.date').html(today);
 
-        $(getComic);
+        $(customCheck);
+
+        
 

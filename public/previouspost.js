@@ -321,6 +321,25 @@ let userData = null;
     })
 })
 
+$('.listView').click(function(){
+    $('.PostHolder').attr('hidden', true);
+    for(i=0; i<userData.length; i++){
+        if(userData[i].content.length > 120){
+        $(".listHolder").append(`<div> <img src='${userData[i].title}'><p>${userData[i].content.substring(0,30)+'...'}</p></div>`)
+        }
+        else{
+        $(".listHolder").append(`<div><img src='${userData[i].title}'><p>${userData[i].content}</p></div>`)
+        }
+    }
+})
+
+
+
+
+// if (noteSummary.length > 120) {
+//     noteSummary = `${note.content.substring(0, 120)}...`;
+// }
+
 // $('.deletePost').click(function(){
 //     $('#TextHolderForm').on('submit', function(event){
 //         event.preventDefault();
