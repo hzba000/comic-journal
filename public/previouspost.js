@@ -181,6 +181,8 @@ let userData = null;
                     `${data[counter].content}`
             )
             $('.ComicHome').html(`<img src = "${data[counter].title}" alt="cartoon strip">`)
+            $('.date').html(`${new Date(data[counter].createDate).toLocaleDateString()}`);
+
 
         }
         console.log(counter);
@@ -204,6 +206,8 @@ let userData = null;
 
         }
         console.log(counter);
+        $('.date').html(`${new Date(data[counter].createDate).toLocaleDateString()}`);
+
    })
            //Format Date
         //    var date = new Date(data[counter].createDate);
@@ -233,6 +237,7 @@ let userData = null;
   //and process it for displaying on screen
   function feedDataToDisplay(){
     getDataApi(displayDataApi);
+    alert("Okay! Redirecting to your post library!");
   } 
   
   //We want Ajax call to be made on page load, this does that with jquery
@@ -274,24 +279,31 @@ let userData = null;
     $('#TextHolderForm').on('submit', function(event){
         event.preventDefault();
             const data = { id:`${userData[counter].id}`};
-            $.ajax({
-                url: `/api/note/${userData[counter].id}`,
-                method: 'DELETE',
-                headers: { 'Content-Type': 'application/json' },
-                data: JSON.stringify(data),
-                beforeSend:function(xhr){
-                    xhr.setRequestHeader('Authorization', `Bearer ${localStorage.jwtToken}`);
-                },
-                success: (response) => {
-                    console.log("DELETED!");
-                },
+            var checkDelete = confirm("Are you sure you want to delete your post?");
+            if (checkDelete === true){
+                $.ajax({
+                    url: `/api/note/${userData[counter].id}`,
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' },
+                    data: JSON.stringify(data),
+                    beforeSend:function(xhr){
+                        xhr.setRequestHeader('Authorization', `Bearer ${localStorage.jwtToken}`);
+                    },
+                    success: (response) => {
+                        console.log("DELETED!");
+                    },
+        
+                    error: (err) => {
+                        console.log("NOT DELETED");
+                    }
+                    
+                });
+                    window.location.reload();
+            }
     
-                error: (err) => {
-                    console.log("NOT DELETED");
-                }
-    
-            });
             $('#TextHolderForm').off('submit');
+
+            
     })
 })
 
@@ -318,6 +330,7 @@ let userData = null;
                 }
             });
             $('#TextHolderForm').off('submit');
+            window.location.reload();
     })
 })
 
