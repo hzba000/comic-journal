@@ -94,22 +94,32 @@ function is_url(str)
 //This is the callback function for getDataApi, which takes data (array of objects)
 //For every post object in the array (called posts), append the text to body
 function displayDataApi(data){
-    console.log(data);
-    // if(customURL){
-    //     data.img = customURL;
-    // }
-    let backup_image = data.img;
-    let test = is_url(customURL)
-    if(test=false){
+    let test = is_url(customURL);
+    if(test == true){
         data.img = customURL;
     }
     const comic_image = data.img;
     comic_image_global = comic_image;
     console.log(comic_image);
-    $('.ComicHome').html(`<img src = "${customURL}" alt="cartoon strip" onerror="this.src = '${backup_image}'">`);
+    $('.ComicHome').html(`<img src = "${customURL}" alt="cartoon strip" onerror="this.src = '${data.img}'">`);
+    // $('.ComicHome').html(`<img src = "${customURL}" alt="cartoon strip" onerror="this.src = '${backup_image}'">`);
     //The above line causes an error, but I need it to validate the correct image
 
 }
+
+// function displayDataApi(data){
+//     console.log(data);
+//     // if(customURL){
+//     //     data.img = customURL;
+//     // }
+//     let cloneData = data;
+//     const comic_image = cloneData.img;
+//     comic_image_global = comic_image;
+//     console.log(comic_image);
+//     $('.ComicHome').html(`<img src = "${comic_image}" alt="cartoon strip">`);
+//     $('.ComicHome').html(`<img src = "${customURL}" alt="cartoon strip" onerror="this.src = '${comic_image}'">`);
+//     //The above line causes an error, but I need it to validate the correct image
+//  }
 
 //This feeds the callback function necessary for ajax call, which receives data
 //and process it for displaying on screen
