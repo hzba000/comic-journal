@@ -363,4 +363,4 @@ $('.listView').click(function(){
 // })
 
 
-history.replaceState(undefined, undefined, "#hash_value")
+// history.replaceState(undefined, undefined, `${counter}`)

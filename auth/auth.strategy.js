@@ -42,6 +42,7 @@ const localStrategy = new LocalStrategy((username, password, passportVerify) => 
         // http://www.passportjs.org/docs/configure/#verify-callback
         if (err.reason === 'LoginError') {
             return passportVerify(null, false, err.message);
+            //retrun passportVerify(null, user); --TJ
         }
         return passportVerify(err, false);
     });
