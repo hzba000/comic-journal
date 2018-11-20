@@ -1,128 +1,6 @@
 counter = 0;
 let userData = null;
 
-// let MOCK_USER_POSTS = {
-//     "posts":[
-//         {   
-//             "id": "1111111",
-//             "username": "bonnie hayland",
-//             "comicId": 2100,
-//             "text": "0 Text",
-//             "publishedAt": 210000
-//         },
-  
-//         {   
-//             "id": "2222222",
-//             "username": "bonnie_hayland",
-//             "comicId": 2200,
-//             "text": "1 Text",
-//             "publishedAt": 220000
-//         },
-  
-//         {   
-//             "id": "3333333",
-//             "username": "bonnie_hayland",
-//             "comicId": 2300,
-//             "text": "2 Text",
-//             "publishedAt": 230000
-//         },
-  
-//         {   
-//             "id": "4444444",
-//             "username": "bonnie_hayland",
-//             "comicId": 2400,
-//             "text": "3 Text",
-//             "publishedAt": 240000
-//         },
-//         {   
-//             "id": "4444444",
-//             "username": "bonnie_hayland",
-//             "comicId": 2400,
-//             "text": "4 Text",
-//             "publishedAt": 240000
-//         },
-//         {   
-//             "id": "4444444",
-//             "username": "bonnie_hayland",
-//             "comicId": 2400,
-//             "text": "5 Text",
-//             "publishedAt": 240000
-//         },
-//         {   
-//             "id": "4444444",
-//             "username": "bonnie_hayland",
-//             "comicId": 2400,
-//             "text": "6 Text",
-//             "publishedAt": 240000
-//         },
-//         {   
-//             "id": "4444444",
-//             "username": "bonnie_hayland",
-//             "comicId": 2400,
-//             "text": "7 Text",
-//             "publishedAt": 240000
-//         },
-//         {   
-//             "id": "4444444",
-//             "username": "bonnie_hayland",
-//             "comicId": 2400,
-//             "text": "8 Text",
-//             "publishedAt": 240000
-//         },
-//         {   
-//             "id": "4444444",
-//             "username": "bonnie_hayland",
-//             "comicId": 2400,
-//             "text": "9 Text",
-//             "publishedAt": 240000
-//         },
-//         {   
-//             "id": "4444444",
-//             "username": "bonnie_hayland",
-//             "comicId": 2400,
-//             "text": "10 Text",
-//             "publishedAt": 240000
-//         },
-//         {   
-//             "id": "4444444",
-//             "username": "bonnie_hayland",
-//             "comicId": 2400,
-//             "text": "11 Text",
-//             "publishedAt": 240000
-//         },
-//         {   
-//             "id": "4444444",
-//             "username": "bonnie_hayland",
-//             "comicId": 2400,
-//             "text": "12 Text",
-//             "publishedAt": 240000
-//         },
-//         {   
-//             "id": "4444444",
-//             "username": "bonnie_hayland",
-//             "comicId": 2400,
-//             "text": "13 Text",
-//             "publishedAt": 240000
-//         },
-//         {   
-//             "id": "4444444",
-//             "username": "bonnie_hayland",
-//             "comicId": 2400,
-//             "text": "14 Text",
-//             "publishedAt": 240000
-//         },
-//         {   
-//             "id": "4444444",
-//             "username": "bonnie_hayland",
-//             "comicId": 2400,
-//             "text": "15 Text",
-//             "publishedAt": 240000
-//         },
-//     ]
-//   }
-  
-  //This will eventually pull data from API, but right now it pulls data from the object above
-  //This will change in this way: instead of setting a timeout and returning mock data, it will use jQuery to make an AJAX call to our endpoint.
   function getDataApi() {
     $.ajax({
         type: 'GET',
@@ -142,8 +20,7 @@ let userData = null;
         }
     });
 }
-  //This is the callback function for getDataApi, which takes data (array of objects)
-  //For every post object in the array (called posts), append the text to body
+
   function displayDataApi(data){
       function compare(a,b){
           if (a.createDate < b.createDate){
@@ -209,26 +86,8 @@ let userData = null;
         $('.date').html(`${new Date(data[counter].createDate).toLocaleDateString()}`);
 
    })
-           //Format Date
-        //    var date = new Date(data[counter].createDate);
 
-        //    var year = date.getFullYear();
-        //    var month = date.getMonth()+1;
-        //    var day = date.getDate();
-           
-        //    if (day < 10) {
-        //      day = '0' + day;
-        //    }
-        //    if (month < 10) {
-        //      month = '0' + month;
-        //    }
-           
-        //    var formattedDate = month + '-' + day + '-' + year
-        //    console.log(formattedDate);
-        //    //Display Date
-        //    $('.date').html(formattedDate);
-        //    console.log(data[counter].createDate);
-        $('.date').html(`${new Date(data[counter].createDate).toLocaleDateString()}`);
+        // $('.date').html(`${new Date(data[counter].createDate).toLocaleDateString()}`);
   }
   
 
@@ -274,7 +133,6 @@ let userData = null;
       $('#TextHolder').removeAttr('disabled');
   })
 
-  //Felicia said that this is sending data twice, not necessary
   $('.deletePost').click(function(){
     $('#TextHolderForm').on('submit', function(event){
         event.preventDefault();
@@ -334,46 +192,30 @@ let userData = null;
     })
 })
 
+let submissionValue = null;
 $('.listView').click(function(){
     $('.PostHolder').attr('hidden', true);
-    for(i=0; i<userData.length; i++){
+    $(".test").html('');
+    for(i = userData.length-1; i > -1; i--){
         if(userData[i].content.length > 120){
-        $(".listHolder").append(`<div> <img src='${userData[i].title}'><p>${userData[i].content.substring(0,30)+'...'}</p></div>`)
+        $(".test").append(`<div class="${i}"><p>${i}</p><img class="${i}" src='${userData[i].title}'><p class="${i}">${userData[i].content.substring(0,30)+'...'}</p></div>`)
         }
         else{
-        $(".listHolder").append(`<div><img src='${userData[i].title}'><p>${userData[i].content}</p></div>`)
+        $(".test").append(`<div class="${i}"><p>${i}</p><img class="${i}" src='${userData[i].title}'><p class="${i}">${userData[i].content}</p></div>`)
         }
     }
 })
 
-
-
-
-
-// if (noteSummary.length > 120) {
-//     noteSummary = `${note.content.substring(0, 120)}...`;
-// }
-
-// $('.deletePost').click(function(){
-//     $('#TextHolderForm').on('submit', function(event){
-//         event.preventDefault();
-//             const data = { id:"5be3aa6317c8ec1ac0b442be"};
-//             $.ajax({
-//                 url: `/posts/${data.id}`,
-//                 method: 'DELETE',
-//                 headers: { 'Content-Type': 'application/json' },
-//                 data: JSON.stringify(data),
-//                 success: (response) => {
-//                     console.log("DELETED!");
-//                 },
-    
-//                 error: (err) => {
-//                     console.log("NOT DELETED");
-//                 }
-    
-//             });
-//     })
-// })
-
-
-// history.replaceState(undefined, undefined, `${counter}`)
+$('.test').on('click', function(event){
+    event.stopPropagation();
+    window.scrollTo(0,0);
+    $('.PostHolder').attr('hidden', false);
+    $('.listHolder').attr('hidden', false);
+    let postValue = ($(event.target).attr('class'));
+    console.log(postValue);
+    counter = postValue;
+    $('.ComicHome').html(`<img src = "${userData[counter].title}" alt="cartoon strip">`)
+    $('#TextHolder').val(
+        `${userData[counter].content}`
+) 
+})
