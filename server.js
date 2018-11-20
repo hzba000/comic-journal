@@ -8,7 +8,6 @@ const { DATABASE_URL, TEST_DATABASE_URL ,PORT } = require('./config');
 const { authRouter } = require('./auth/auth.router');
 const { userRouter } = require('./user/user.router');
 const { noteRouter } = require('./note/note.router');
-const { postRouter } = require('./post/post.router');
 const { localStrategy, jwtStrategy } = require('./auth/auth.strategy');
 
 mongoose.Promise = global.Promise;
@@ -27,7 +26,6 @@ app.use(express.static('public'));
 app.use('/api/auth', authRouter); 
 app.use('/api/user', userRouter); 
 app.use('/api/note', noteRouter);
-app.use('/api/post', postRouter);
 app.use('*', function (req, res) {
   res.status(404).json({ message: 'Not Found' });
 });

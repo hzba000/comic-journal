@@ -1,3 +1,31 @@
+/* previouspost specific */
+
+.test{
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  justify-content: space-between;
+  margin:10px;
+}
+
+.listHolder{
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  justify-content: space-between;
+  margin:10px;
+}
+
+.listHolder img{
+  height: 300px;
+  width:300px;
+}
+
+hidden{
+  display:none;
+}
+
+/* previouspost specific */
 
 header{
     text-align:center;
@@ -9,7 +37,7 @@ header{
 }
 
 
-.Holder{
+body{
     background-color: gray;
     height: 100%;
     text-align: center;

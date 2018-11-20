@@ -54,9 +54,6 @@ function displayDataApi(data){
         $('.badges').append(`<img src="green_check.jpg" height="50px" width="50px">  <span>Written 100 Posts!</span><br>`);
     }
 
-    
-
-
 }
 
 
