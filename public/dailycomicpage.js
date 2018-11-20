@@ -33,6 +33,9 @@ function displayDataApi(data){
     if(test == true){
         data.img = customURL;
     }
+    else if(test ==false){
+        customURL = data.img;
+    }
     const comic_image = data.img;
     comic_image_global = comic_image;
     console.log(comic_image);
