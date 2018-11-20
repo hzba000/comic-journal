@@ -334,17 +334,48 @@ let userData = null;
     })
 })
 
+let submissionValue = null;
 $('.listView').click(function(){
     $('.PostHolder').attr('hidden', true);
-    for(i=0; i<userData.length; i++){
+    for(i = userData.length-1; i > -1; i--){
         if(userData[i].content.length > 120){
-        $(".listHolder").append(`<div> <img src='${userData[i].title}'><p>${userData[i].content.substring(0,30)+'...'}</p></div>`)
+        $(".test").append(`<div class="${i}"><p>${i}</p><img class="${i}" src='${userData[i].title}'><p class="${i}">${userData[i].content.substring(0,30)+'...'}</p></div>`)
         }
         else{
-        $(".listHolder").append(`<div><img src='${userData[i].title}'><p>${userData[i].content}</p></div>`)
+        $(".test").append(`<div class="${i}"><p>${i}</p><img class="${i}" src='${userData[i].title}'><p class="${i}">${userData[i].content}</p></div>`)
         }
     }
 })
+
+//This works, but results in a bad user experience because any ill placed click will lead them to the wrong page
+$('.test').on('click', function(event){
+    event.stopPropagation();
+    window.scrollTo(0,0);
+    $('.PostHolder').attr('hidden', false);
+    $('.listHolder').attr('hidden', false);
+    let postValue = ($(event.target).attr('class'));
+    console.log(postValue);
+    counter = postValue;
+    $('.ComicHome').html(`<img src = "${userData[counter].title}" alt="cartoon strip">`)
+    $('#TextHolder').val(
+        `${userData[counter].content}`
+)
+    
+    
+})
+
+//set the counter = the array value of the thing clicked on; 
+//when the user goes back to scroll view it will have the right counter number, and simply replace the content
+
+// $('.test').click(function(){
+//     $('.PostHolder').attr('hidden', false);
+//     $('.listHolder').html('');
+//     $('.comicHome').html($(event.target).val());
+
+// })
+
+//When the user clicks on a link -- Switch to scroll view -- Populate with that content -- Make sure counter is aligned so buttons still work
+
 
 
 

@@ -43,7 +43,7 @@ let MOCK_USER_POSTS = {
 
 //     }   
 let customURL = null;
-let url = `http://cors-anywhere.herokuapp.com/https://xkcd.com/${Math.floor(Math.random() * 614)}/info.0.json`;
+let url = `https://cors-anywhere.herokuapp.com/https://xkcd.com/${Math.floor(Math.random() * 614)}/info.0.json`;
 
 function customCheck(){
     customURL = prompt("If you want to use your own comic, feed me a comic image url, otherwise press OK");
