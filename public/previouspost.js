@@ -337,6 +337,7 @@ let userData = null;
 let submissionValue = null;
 $('.listView').click(function(){
     $('.PostHolder').attr('hidden', true);
+    $(".test").html('');
     for(i = userData.length-1; i > -1; i--){
         if(userData[i].content.length > 120){
         $(".test").append(`<div class="${i}"><p>${i}</p><img class="${i}" src='${userData[i].title}'><p class="${i}">${userData[i].content.substring(0,30)+'...'}</p></div>`)
