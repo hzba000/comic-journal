@@ -1,7 +1,5 @@
 /*sign up and sign in specific*/
-html{
-  display:block;
-}
+
 
 .wrapper {
   background-color: whitesmoke;
@@ -116,6 +114,12 @@ html{
 hidden{
   display:none;
 }
+
+
+/*Buttons*/
+
+
+/*End Buttons*/
 
 /* previouspost specific end */
 
