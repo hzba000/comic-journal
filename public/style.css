@@ -1,3 +1,95 @@
+/*sign up and sign in specific*/
+html{
+  display:block;
+}
+
+.wrapper {
+  background-color: whitesmoke;
+  list-style-type: none;
+  padding: 0;
+  border-radius: 3px;
+  padding-bottom: 10px;
+
+}
+.form-row {
+  display: flex;
+  justify-content: flex-end;
+  padding: .5em;
+}
+.form-row > label {
+  padding: .5em 1em .5em 0;
+  flex: 1;
+}
+
+.form-row > input {
+  flex: 2;
+}
+.form-row > input,
+.form-row > button {
+  padding: .5em;
+}
+.form-row > button {
+ background: gray;
+ color: white;
+ border: 0;
+}
+
+/*sign up and sign in specific end*/
+
+
+
+/* Index specific */
+
+.signup_Button, .login_Button, .create_Account_Button {
+	-moz-box-shadow: 3px 4px 0px 0px #8a2a21;
+	-webkit-box-shadow: 3px 4px 0px 0px #8a2a21;
+	box-shadow: 3px 4px 0px 0px #8a2a21;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c62d1f), color-stop(1, #f24437));
+	background:-moz-linear-gradient(top, #c62d1f 5%, #f24437 100%);
+	background:-webkit-linear-gradient(top, #c62d1f 5%, #f24437 100%);
+	background:-o-linear-gradient(top, #c62d1f 5%, #f24437 100%);
+	background:-ms-linear-gradient(top, #c62d1f 5%, #f24437 100%);
+	background:linear-gradient(to bottom, #c62d1f 5%, #f24437 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c62d1f', endColorstr='#f24437',GradientType=0);
+	background-color:#c62d1f;
+	-moz-border-radius:18px;
+	-webkit-border-radius:18px;
+	border-radius:18px;
+	border:1px solid #d02718;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:7px 25px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #810e05;
+}
+.signup_Button:hover, .login_Button:hover, .create_Account_Button:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f24437), color-stop(1, #c62d1f));
+	background:-moz-linear-gradient(top, #f24437 5%, #c62d1f 100%);
+	background:-webkit-linear-gradient(top, #f24437 5%, #c62d1f 100%);
+	background:-o-linear-gradient(top, #f24437 5%, #c62d1f 100%);
+	background:-ms-linear-gradient(top, #f24437 5%, #c62d1f 100%);
+	background:linear-gradient(to bottom, #f24437 5%, #c62d1f 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f24437', endColorstr='#c62d1f',GradientType=0);
+	background-color:#f24437;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+
+/* Index specific end */
+
+
+
+
+
+
+
 /* previouspost specific */
 
 .test{
@@ -25,11 +117,16 @@ hidden{
   display:none;
 }
 
-/* previouspost specific */
+/* previouspost specific end */
 
 header{
     text-align:center;
-    color: white;
+    color: #0B444C;
+}
+
+header h1{
+  color: white;
+    background-color: #006675;
 }
 
 .dropdown{
@@ -38,7 +135,7 @@ header{
 
 
 body{
-    background-color: gray;
+    background-color: lightblue;
     height: 100%;
     text-align: center;
 }
@@ -64,7 +161,7 @@ fieldset{
 /* Navbar container */
 .navbar {
     overflow: hidden;
-    background-color: #333;
+    background-color: #006675;
     font-family: Arial;
   }
   
