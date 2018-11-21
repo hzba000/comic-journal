@@ -11,39 +11,30 @@
     <header>
         <h1> Welcome to Comic Journal</h1>
         <h2> Use comics to help you write daily! </h2>
+        <img src="./images/thought_bubble.png" alt="thought-bubble-journal" height="150px" width="auto">
+        <h2> What can you do here?</h2>
+        <h3> Once you sign up, you will get comic strips that will
+             act as prompts that you can write about. 
+        </h3>
+        <h4> If you have your own comic strip that you want to write about, you can add those too!</h4>
+        <h4> Everything gets saved to your account, so you can go back and play with them later!</h4>
     </header>
 
     <main>
-        <div class = Holder>
-            <div class= ComicHolder>
-                <h3>Demo</h3>
-                <img src="http://www.mainecreditunions.org/wp-content/uploads/2016/07/lorem-ipsum-logo.jpg" height=100px>
-            </div>
-            <div class= PostHolder>
-                <form>
-                    <fieldset>
-                        <legend></legend>
-                        <label for="TextHolder">My thoughts...</label>
-                        <textarea id="TextHolder">
- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras auctor vitae ipsum sed auctor. Maecenas venenatis ullamcorper egestas. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam a rutrum elit, ac rhoncus libero. Morbi pellentesque ex vel dolor fringilla rhoncus eget quis sem. Morbi rutrum at tellus sed varius. Aenean vitae malesuada felis. Donec suscipit enim sem, ut hendrerit lectus malesuada sit amet. Mauris sit amet laoreet tellus, id malesuada mauris. Etiam non elit ornare, dignissim purus ac, sodales augue. Aenean sed tortor egestas, maximus lorem dictum, suscipit risus. Nunc et enim rutrum, blandit odio nec, tincidunt ipsum.
 
-                                Nullam efficitur justo a diam ullamcorper, at pharetra lorem auctor. Etiam volutpat lorem nec nisi pretium, et fermentum ipsum sagittis. Etiam ac consectetur leo. Donec ut ultricies lorem. Nullam porta sapien vel scelerisque aliquet. Suspendisse justo lacus, posuere ultrices feugiat eu, pretium eu neque. Curabitur ut dui nec nulla varius tincidunt commodo nec enim. Vivamus faucibus, purus eu laoreet ultrices, tortor odio rhoncus nibh, non aliquet erat lacus quis sem. Sed sem purus, congue eu mi et, iaculis finibus nunc. Vestibulum malesuada facilisis odio sed maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam convallis non enim ac tincidunt. Etiam vulputate aliquet lectus a hendrerit. Quisque a viverra felis, eu accumsan nisl.
-                                
-                                Etiam convallis cursus augue in facilisis. Fusce in mauris ligula. Curabitur ultrices euismod orci porta commodo. Nam scelerisque odio nulla, non mattis ex rhoncus sed. Ut viverra, mi sed posuere dictum, risus arcu pulvinar mi, quis molestie nunc est rhoncus nunc. Fusce commodo, dolor ut lacinia gravida, dui erat ultricies erat, non egestas nibh magna ut augue. Nunc hendrerit odio non faucibus euismod. Vivamus viverra pretium dapibus. Mauris id accumsan ante. Ut laoreet convallis tortor, eu ullamcorper nisi consequat ac. In hac habitasse platea dictumst.
-                                
-                                Aliquam nec magna massa. Praesent lobortis gravida lacus, at interdum mauris scelerisque vitae. Vivamus pulvinar, ex non cursus interdum, odio arcu interdum lorem, in sollicitudin mi ligula eu tellus. Nunc eu viverra ex. Cras efficitur sollicitudin velit euismod luctus. Aliquam rutrum vitae tortor sed interdum. Quisque porttitor semper felis sit amet dignissim. Nunc sit amet urna diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent ut condimentum diam. Nulla sed porttitor elit. Donec vitae mattis ipsum. Praesent bibendum vestibulum rutrum.
-                                
-                                Suspendisse ipsum arcu, feugiat eu ex sit amet, congue cursus leo. Aenean non felis vitae magna sagittis euismod eget ut augue. Morbi congue nisl elementum lectus porttitor, in tristique velit malesuada. Morbi a lacinia orci, sit amet fringilla est. Cras fringilla ornare nunc vitae porta. Donec fermentum venenatis lorem, ut dapibus augue ultricies sit amet. Aliquam ac nisl id velit malesuada rutrum. Maecenas in sem et lectus fringilla laoreet. Phasellus neque dolor, malesuada eget nisl vitae, sagittis aliquam justo. Nunc quis volutpat magna, non iaculis lorem. Quisque scelerisque sagittis convallis. Curabitur mattis, purus nec ultrices lobortis, nunc purus pellentesque quam, in posuere turpis tellus ac ex. Vestibulum faucibus auctor dolor vel vehicula. In facilisis placerat est, non hendrerit felis.
-                        </textarea>
-                    </fieldset><br><br>
                     <div class= buttonHolder>
-                           <a href="./auth/signup.html">Sign up!</a>
-                           <a href="./auth/login.html">Sign in</a>
+                           <!-- <p><a href="./auth/signup.html">Sign up!</a></p>
+                           <p><a href="./auth/login.html">Sign in</a></p> -->
+
+                           <button class="signup_Button" onclick="location.href =' ./auth/signup.html'">Sign up</button>
+                           <button class="login_Button" onclick="location.href =' ./auth/login.html'">Login</button>
+
                     </div>
-                </form>
-            </div>
-        </div>
+      
 
     </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>
