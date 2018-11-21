@@ -59,6 +59,7 @@ let userData = null;
             )
             $('.ComicHome').html(`<img src = "${data[counter].title}" alt="cartoon strip">`)
             $('.date').html(`${new Date(data[counter].createDate).toLocaleDateString()}`);
+            $(window).scrollTop(0);
 
 
         }
@@ -84,6 +85,7 @@ let userData = null;
         }
         console.log(counter);
         $('.date').html(`${new Date(data[counter].createDate).toLocaleDateString()}`);
+        $(window).scrollTop(0);
 
    })
 
@@ -204,6 +206,8 @@ $('.listView').click(function(){
         $(".test").append(`<div class="${i}"><p>${i}</p><img class="${i}" src='${userData[i].title}'><p class="${i}">${userData[i].content}</p></div>`)
         }
     }
+    $(window).scrollTop(0);
+
 })
 
 $('.test').on('click', function(event){

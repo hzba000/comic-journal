@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -19,33 +18,39 @@
                     <a href="dailycomicpage.html">Add a comic</a>
                     <a href="previouspost.html">Saved Posts</a>
                     <a href="profile.html">Profile</a>
-                    <a href="/"> Logout</a>
+                    <a class="logout" href="/"> Logout</a>
                   </div>
                 </div> 
                 <h1> Cartoon Journal </h1>
-              </div>
+        </div>
     </header>
         <main>
-        <div class = Holder>
-            <div class= PostHolder>
+        <!-- <div class = Holder> -->
+            <!-- <div class= PostHolder> -->
                 <form id="TextHolderForm">
                     <fieldset>
                         <legend></legend>
-                        <div class= "ComicHolder">
+                        <!-- <div class= "ComicHolder"> -->
                                 <h2> Submit your Cartoon </h2>
                                 <h3 class="date"></h3>
                                 <div class="ComicHome"></div>
-                        </div>
-                        <label for="TextHolder">My thoughts...</label>
-                        <textarea id="TextHolder" required></textarea>
-                        <div>
-                            <button type="submit" class= "submitButton" onclick="location.href = 'previouspost.html'"> Submit </button>
-                        </div>
-                    </fieldset><br><br>
+                                <label for="TextHolder">My thoughts...</label>
+                                <textarea id="TextHolder" required></textarea>
+                                <button type="submit" class= "submitButton" onclick="location.href = 'previouspost.html'"> Submit </button>
+
+                        <!-- </div> -->
+                        <!-- <label for="TextHolder">My thoughts...</label>
+                        <textarea id="TextHolder" required></textarea> -->
+                        <!-- <div> -->
+                            <!-- <button type="submit" class= "submitButton" onclick="location.href = 'previouspost.html'"> Submit </button> -->
+                        <!-- </div> -->
+                    </fieldset>
+                    <!-- <br><br> -->
 
                 </form>
-            </div>
-        </div>
+        </main>
+            <!-- </div> -->
+        <!-- </div> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="dailycomicpage.js"></script>
 </body>
