@@ -44,6 +44,15 @@ let userData = null;
         counter = data.length -1
 
         $('.previousPost').click(function(){
+
+            $('#TextHolder').attr('disabled', true); // locks text area again.
+            $('.editPost').attr('hidden', false);
+            $('.updatePost').attr('hidden', true);
+
+
+            if(data.length == 1){
+                alert("Sorry, you only have one post!");
+            }
             counter--;
             if(counter <= 0){
             counter = 0;
@@ -67,6 +76,13 @@ let userData = null;
    })
 
         $('.nextPost').click(function(){
+            $('#TextHolder').attr('disabled', true); // Makes sure it is still disabled 
+            $('.editPost').attr('hidden', false);
+            $('.updatePost').attr('hidden', true);
+
+            if(data.length == 1){
+                alert("Sorry, you only have one post!");
+            }
             counter++;
             if(counter >= data.length){
                 $('#TextHolder').val(
@@ -99,6 +115,8 @@ let userData = null;
   function feedDataToDisplay(){
     getDataApi(displayDataApi);
     alert("Okay! Redirecting to your post library!");
+    $('.updatePost').attr('hidden', true);
+
   } 
   
   //We want Ajax call to be made on page load, this does that with jquery
@@ -133,6 +151,8 @@ let userData = null;
   //Event listeners for buttons
   $('.editPost').click(function(){
       $('#TextHolder').removeAttr('disabled');
+      $('.updatePost').attr('hidden', false);
+      $('.editPost').attr('hidden', true);
   })
 
   $('.deletePost').click(function(){
@@ -168,6 +188,8 @@ let userData = null;
 })
 
   $('.updatePost').click(function(){
+    $('.editPost').attr('hidden', false);
+    $('.updatePost').attr('hidden', true);
     $('#TextHolder').attr('disabled', true);
     $('#TextHolderForm').on('submit', function(event){
         event.preventDefault();
@@ -199,7 +221,7 @@ $('.listView').click(function(){
     $('.PostHolder').attr('hidden', true);
     $(".test").html('');
     for(i = userData.length-1; i > -1; i--){
-        if(userData[i].content.length > 120){
+        if(userData[i].content.length > 50){
         $(".test").append(`<div class="${i}"><p>${i}</p><img class="${i}" src='${userData[i].title}'><p class="${i}">${userData[i].content.substring(0,30)+'...'}</p></div>`)
         }
         else{

@@ -32,7 +32,7 @@ function onSignUpSubmit(event) {
                 alert(`Your username and password must be at least 9 characters`);
             }
             else{
-                alert(`User already exists, please go to login page to sign in`);
+                alert(`This username is taken, try another username!`);
             }
 
 
