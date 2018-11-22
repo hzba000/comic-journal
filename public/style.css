@@ -1,3 +1,38 @@
+/* profile specific */
+.badges{
+  display:flex;
+  flex-direction:column;
+}
+
+.badge_container{
+  background-color:white;
+}
+
+.profile_row{
+  display:flex;
+  flex-direction:row;
+  margin-bottom:20px;
+
+}
+
+.userInfo{
+  margin-bottom:20px;
+  font-size:20px;
+  font-weight:bold;
+  margin-top:20px;
+}
+.profile_row span{
+
+  margin-left:20px;
+
+}
+
+.flex-container{
+  margin-left:30px;
+  margin-bottom:20px;
+}
+/* profile specific end */
+
 h1,h2, h3, label, .submitButton, .ButtonHolder{
   /* max-width:350px; */
   /* margin-left:60px; */
