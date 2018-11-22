@@ -246,3 +246,6 @@ $('.test').on('click', function(event){
 ) 
 })
 
+window.onbeforeunload = function() {
+    prompt( "Leaving this page will reset the wizard");
+};
