@@ -5,6 +5,12 @@ h1,h2, h3, label, .submitButton, .ButtonHolder{
   /* height:200px; */
   text-align:center;
 }
+
+label{
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
 html{
   display:flex;
   justify-content:center;
@@ -13,6 +19,8 @@ html{
 .comicHome img{
 /* max-width:350px; */
 /* margin-left:60px; */
+margin-bottom: 10px;
+
 }
 
 #TextHolder{
@@ -230,7 +238,9 @@ header{
 
 header h1{
   color: white;
-    background-color: #006675;
+  background-color: #006675;
+  margin-right:70px;
+
 }
 
 .dropdown{
@@ -334,7 +344,9 @@ fieldset{
     display: block;
   }
 
-  @media only screen and (max-width:420px){
+
+
+  @media only screen and (max-width:645px){
 
     h2, h3, label, .submitButton, .ButtonHolder{
       max-width:350px;
@@ -351,6 +363,8 @@ fieldset{
     .ComicHome img{
     max-width:350px;
     /* margin-left:60px; */
+        margin-bottom: 10px;
+
     }
     
     #TextHolder{
@@ -360,6 +374,11 @@ fieldset{
       height:200px;
       margin-bottom: 10px;
 
+    }
+
+    label{
+      font-size: 20px;
+      margin-bottom: 10px;
     }
     
 
@@ -383,6 +402,8 @@ fieldset{
     .ComicHome img{
       max-width:250px;
     /* margin-left:20px; */
+    margin-bottom: 10px;
+
     }
     
     #TextHolder{
@@ -392,6 +413,11 @@ fieldset{
       height:200px;
       margin-bottom: 10px;
 
+    }
+
+    label{
+      font-size: 20px;
+      margin-bottom: 10px;
     }
     
 
