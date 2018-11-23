@@ -9,3 +9,4 @@ function deleteAuthenticatedUserFromCache() {
     localStorage.removeItem('name');
     localStorage.removeItem('email');
 }
+
