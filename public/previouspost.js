@@ -75,13 +75,13 @@ let userData = null;
         console.log(counter);
    })
 
-        $('.nextPost').click(function(){
+        $('.nextPost').click(function(){            
             $('#TextHolder').attr('disabled', true); // Makes sure it is still disabled 
             $('.editPost').attr('hidden', false);
             $('.updatePost').attr('hidden', true);
 
-            if(data.length == 1){
-                alert("Sorry, you only have one post!");
+            if(data.length-1 == counter){
+                alert("This is your most recent post!");
             }
             counter++;
             if(counter >= data.length){

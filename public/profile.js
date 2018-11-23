@@ -51,7 +51,7 @@ function displayDataApi(data){
     }
 
     if (data.length >= 100){
-        $('.badges').append(`<div class="profile_row"><img src="./images/top_hat.png" height="50px" width="50px">  <span>Written 100 Posts!</span><br></div>`);
+        $('.badges').append(`<div class="profile_row"><img src="./images/top_hat.png" height="50px" width="50px">  <span>Written One Hundred Posts!</span><br></div>`);
     }
 
 }

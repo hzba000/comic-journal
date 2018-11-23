@@ -1,0 +1,27 @@
+body{
+    max-width:350px;
+}
+
+.title{
+    color:slateblue;
+}
+
+@media only screen and (max-width:325px){
+
+    h2,h3{
+         margin-left:20px;
+    }   
+
+    html{
+        font-size:80%;
+    }
+
+    img{
+        height:140px;
+    }
+
+}
+
+
+
+  

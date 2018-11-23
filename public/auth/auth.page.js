@@ -56,7 +56,7 @@ function onLoginSubmit(event) {
             const authenticatedUser = response.user;
             authenticatedUser.jwtToken = response.jwtToken;
             CACHE.saveAuthenticatedUserIntoCache(authenticatedUser);
-            alert('Login succesful, redirecting you to homepage ...');
+            alert('Login succesful, please use site navigation for best results!');
             window.open('../dailycomicpage.html', '_self');
         },
         onError: err => {

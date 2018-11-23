@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>Comic Journal</title>
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
     <link href="https://fonts.googleapis.com/css?family=Autour+One|Bangers|Gochi+Hand|Love+Ya+Like+A+Sister|Patrick+Hand+SC|Roboto" rel="stylesheet">    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
@@ -25,7 +25,7 @@
         <main>
         <!-- <div class = Holder> -->
             <!-- <div class= PostHolder> -->
-                <form id="TextHolderForm">
+                <form id="TextHolderForm"  onsubmit="location.href = 'previouspost.html';return false;">
                     <fieldset>
                         <legend></legend>
                         <!-- <div class= "ComicHolder"> -->
@@ -33,8 +33,8 @@
                                 <h3 class="date"></h3>
                                 <div class="ComicHome"></div>
                                 <label for="TextHolder">My thoughts...</label>
-                                <textarea id="TextHolder" required></textarea>
-                                <div><button type="submit" class= "submitButton" onclick="location.href = 'previouspost.html'"> Submit </button></div>
+                                <textarea id="TextHolder" required type="submit" value="submit" ></textarea>
+                                <div><button class= "submitButton"> Submit </button></div>
 
                         <!-- </div> -->
                         <!-- <label for="TextHolder">My thoughts...</label>
