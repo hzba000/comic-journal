@@ -1,7 +1,16 @@
-counter = 0;
+'use strict'
+let counter = 0;
 let userData = null;
 
-  function getDataApi() {
+//On page load this calls the function that handles our initial AJAX get request and feeds it a callback function
+    function setupArrival(){
+        getDataApi(prepareDataApi);
+        alert("Okay! Redirecting to your post library!");
+        $('.updatePost').attr('hidden', true);
+} 
+
+//This grabs data from our API to be used in our app, on successful retrieval calls prepareDataAPI
+    function getDataApi() {
     $.ajax({
         type: 'GET',
         url: `/api/note`,
@@ -11,7 +20,7 @@ let userData = null;
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', `Bearer ${localStorage.jwtToken}`);
         },
-        success: displayDataApi,
+        success: prepareDataApi,
         error: err => {
             console.error(err);
             if (onError) {
@@ -21,115 +30,218 @@ let userData = null;
     });
 }
 
-  function displayDataApi(data){
-      function compare(a,b){
-          if (a.createDate < b.createDate){
-              return -1;
-          }
-          if(a.createDate > b.createDate){
-              return 1;
-          }
-          return 0;
-      }
+//This sorts our data by creation date and sets up a global variable equivalent for our data
+    function prepareDataApi(data){
+        //Sorts data in database by creation date
+        data.sort(compare);
+        console.log(data);
+  
+        //clones data to global variable
+        userData = data;
+  
+        //Sets up initial display for app
+        initialDisplay();
+}
 
-      data.sort(compare);
 
-      console.log(data);
-      userData = data;
-        $('#TextHolder').val(
-         `${data[data.length-1].content}`
-    )
-        $('.ComicHome').html(`<img src = "${data[data.length-1].title}" alt="cartoon strip">`);
+//Used by prepareDataApi() to sort our data by creation date
+    function compare(a,b){
+        if (a.createDate < b.createDate){return -1;}
+        if (a.createDate > b.createDate){return 1;}
+        return 0;
+}
 
-        counter = data.length -1
+//This sets up our initial display, it also sets up our counter for navigation throughout the app
+    function initialDisplay(){
+        //Matches counter to most recent comic in array
+        counter = userData.length -1
+        //Sets initial comic and content (Most recent appears first because of sort)
+        $('#TextHolder').val(`${userData[userData.length-1].content}`)
+        $('.ComicHome').html(`<img src = "${userData[userData.length-1].title}" alt="cartoon strip">`);
+}
 
+//Navigation
+
+   //Handles previous post button click
+   function previousPost(){
         $('.previousPost').click(function(){
-
             $('#TextHolder').attr('disabled', true); // locks text area again.
-            $('.editPost').attr('hidden', false);
-            $('.updatePost').attr('hidden', true);
+            $('.editPost').attr('hidden', false); // starts with edit button revealed
+            $('.updatePost').attr('hidden', true); // starts with update button hidden
 
-
-            if(data.length == 1){
+            //Announcement if user tries to press previous button when they only have one post
+            if(userData.length == 1){
                 alert("Sorry, you only have one post!");
-            }
-            counter--;
-            if(counter <= 0){
-            counter = 0;
-
-            $('#TextHolder').val(
-                `${data[0].content}`
-           )
-           $('.ComicHome').html(`<img src = "${data[0].title}" alt="cartoon strip">`)
         }
+
+            //Adjusts counter for previous button clicks
+            counter--;
+
+            //If the user is on their first ever post, continue to show them that post if they attempt to click 'previous'
+            if(counter <= 0){ 
+                counter = 0;
+                $('#TextHolder').val(`${userData[0].content}`)
+                $('.ComicHome').html(`<img src = "${userData[0].title}" alt="cartoon strip">`)
+        }
+            //If they are not on their first post, match the comic and content to the post with the counter value that matches data array
             else{
-                $('#TextHolder').val(
-                    `${data[counter].content}`
-            )
-            $('.ComicHome').html(`<img src = "${data[counter].title}" alt="cartoon strip">`)
-            $('.date').html(`${new Date(data[counter].createDate).toLocaleDateString()}`);
+                $('#TextHolder').val(`${userData[counter].content}`);
+                $('.ComicHome').html(`<img src = "${userData[counter].title}" alt="cartoon strip">`)
+                $('.date').html(`${new Date(userData[counter].createDate).toLocaleDateString()}`); //Set the date
+                $(window).scrollTop(0); // Scroll to top so comic has better visibility
+        }           
+console.log(counter);
+    })
+}
+
+    //Handles Next Button Click
+    function nextPost(){
+        $('.nextPost').click(function(){            
+            $('#TextHolder').attr('disabled', true); //Locks text area again
+            $('.editPost').attr('hidden', false);    //starts with edit button revealed
+            $('.updatePost').attr('hidden', true);   //starts with update button hidden
+
+            //Informs user if they are on their most recent post
+            if(userData.length-1 == counter){
+                alert("This is your most recent post!");
+        }
+
+            //Adjusts counter for next button clicks
+            counter++;
+
+            //If user is on their most recent post, display most recent comic and content
+            if(counter >= userData.length){
+                $('#TextHolder').val(`${userData[userData.length-1].content}`)
+                $('.ComicHome').html(`<img src = "${userData[userData.length-1].title}" alt="cartoon strip">`)
+
+            //Makes sure counter stays at same position as data array
+            counter = userData.length -1;
+        }
+
+            //If user is not on their most recent post, display comic and content that matches counter, which matches data array position
+            else{
+            $('#TextHolder').val(`${userData[counter].content}`)
+            $('.ComicHome').html(`<img src = "${userData[counter].title}" alt="cartoon strip">`)
+            $('.date').html(`${new Date(userData[counter].createDate).toLocaleDateString()}`);//Displays date
+            $(window).scrollTop(0);//Scrolls to top to clearly display comic to user
+        }
+console.log(counter);
+    })
+}
+
+    //Event listeners for buttons
+    function editPost(){
+    $('.editPost').click(function(){
+        $('#TextHolder').removeAttr('disabled');
+        $('.updatePost').attr('hidden', false);
+        $('.editPost').attr('hidden', true);
+    })
+}
+
+
+    function deletePost(){
+    $('.deletePost').click(function(){
+        $('#TextHolderForm').on('submit', function(event){
+            event.preventDefault();
+            const data = { id:`${userData[counter].id}`};
+            var checkDelete = confirm("Are you sure you want to delete your post?");
+            if (checkDelete === true){
+                $.ajax({
+                    url: `/api/note/${userData[counter].id}`,
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' },
+                    data: JSON.stringify(data),
+                    beforeSend:function(xhr){
+                        xhr.setRequestHeader('Authorization', `Bearer ${localStorage.jwtToken}`);
+                    },
+                    success: (response) => {
+                        console.log("DELETED!");
+                    },
+            
+                    error: (err) => {
+                        console.log("NOT DELETED");
+                    }
+                        
+                });
+                    window.location.reload();
+            }
+                $('#TextHolderForm').off('submit');
+        })
+    })
+}
+
+    function updatePost(){
+    $('.updatePost').click(function(){
+        $('.editPost').attr('hidden', false);
+        $('.updatePost').attr('hidden', true);
+        $('#TextHolder').attr('disabled', true);
+        $('#TextHolderForm').on('submit', function(event){
+            event.preventDefault();
+            const userSubmission = $('#TextHolder').val();
+            const data = { id:`${userData[counter].id}`, content: `${userSubmission}`, title:`${userData[counter].title}`};
+            $.ajax({
+                url: `/api/note/${userData[counter].id}`,
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                data: JSON.stringify(data),
+                beforeSend:function(xhr){
+                    xhr.setRequestHeader('Authorization', `Bearer ${localStorage.jwtToken}`);
+                },
+                success: (response) => {
+                    console.log("UPDATED!");
+                },
+        
+                error: (err) => {
+                    console.log("NOT UPDATED");
+                }
+            });
+                $('#TextHolderForm').off('submit');
+                window.location.reload();
+        })
+    })
+}
+
+    
+    function displayListViewImage(){
+        $('.listView').click(function(){
+            $('.PostHolder').attr('hidden', true);
+            $(".test").html('');
+            for(let i = userData.length-1; i > -1; i--){
+                if(userData[i].content.length > 50){
+                    $(".test").append(`<div class="${i}"><p>${i}</p><img class="${i}" src='${userData[i].title}'><p class="${i}">${userData[i].content.substring(0,30)+'...'}</p></div>`)
+            }
+                else{
+                    $(".test").append(`<div class="${i}"><p>${i}</p><img class="${i}" src='${userData[i].title}'><p class="${i}">${userData[i].content}</p></div>`)
+            }
+        }
             $(window).scrollTop(0);
 
+    })
+}
 
-        }
-        console.log(counter);
-   })
-
-        $('.nextPost').click(function(){            
-            $('#TextHolder').attr('disabled', true); // Makes sure it is still disabled 
-            $('.editPost').attr('hidden', false);
-            $('.updatePost').attr('hidden', true);
-
-            if(data.length-1 == counter){
-                alert("This is your most recent post!");
-            }
-            counter++;
-            if(counter >= data.length){
-                $('#TextHolder').val(
-                    `${data[data.length-1].content}`
-               )
-               $('.ComicHome').html(`<img src = "${data[data.length-1].title}" alt="cartoon strip">`)
-
-               counter = data.length -1;
-            }
-            else{
+    function clickListViewImage(){
+    $('.test').on('click', function(event){
+            event.stopPropagation();
+            window.scrollTo(0,0);
+            $('.PostHolder').attr('hidden', false);
+            $('.listHolder').attr('hidden', false);
+            let postValue = ($(event.target).attr('class'));
+            console.log(postValue);
+            counter = postValue;
+            $('.ComicHome').html(`<img src = "${userData[counter].title}" alt="cartoon strip">`)
             $('#TextHolder').val(
-                `${data[counter].content}`
-           )
-           $('.ComicHome').html(`<img src = "${data[counter].title}" alt="cartoon strip">`)
+                `${userData[counter].content}`
+        ) 
+    })
+}
 
-        }
-        console.log(counter);
-        $('.date').html(`${new Date(data[counter].createDate).toLocaleDateString()}`);
-        $(window).scrollTop(0);
-
-   })
-
-        // $('.date').html(`${new Date(data[counter].createDate).toLocaleDateString()}`);
-  }
-  
-
-  
-  //This feeds the callback function necessary for ajax call, which receives data
-  //and process it for displaying on screen
-  function feedDataToDisplay(){
-        getDataApi(displayDataApi);
-        alert("Okay! Redirecting to your post library!");
-        $('.updatePost').attr('hidden', true);
-
-  } 
-  
-  //We want Ajax call to be made on page load, this does that with jquery
-  $(feedDataToDisplay);
-  
-  
   //DROP DOWN MENU STUFF
   
   /* When the user clicks on the button, 
   toggle between hiding and showing the dropdown content */
   function dropDown() {
       document.getElementById("myDropdown").classList.toggle("show");
-  }
+}
         // Close the dropdown menu if the user clicks outside of it
         window.onclick = function(event) {
             if (!event.target.matches('.dropbtn')) {
@@ -142,106 +254,20 @@ let userData = null;
                 openDropdown.classList.remove('show');
                 }
             }
-            }
-  }
+        }
+}
   
   //DROP DOWN MENU STUFF END!
 
-  //Event listeners for buttons
-  $('.editPost').click(function(){
-      $('#TextHolder').removeAttr('disabled');
-      $('.updatePost').attr('hidden', false);
-      $('.editPost').attr('hidden', true);
-  })
+  function handleFunctions(){
+      setupArrival();
+      displayListViewImage();
+      clickListViewImage();
+      updatePost();
+      deletePost();
+      editPost();
+      nextPost();
+      previousPost();
+}
 
-  $('.deletePost').click(function(){
-    $('#TextHolderForm').on('submit', function(event){
-        event.preventDefault();
-        const data = { id:`${userData[counter].id}`};
-        var checkDelete = confirm("Are you sure you want to delete your post?");
-        if (checkDelete === true){
-            $.ajax({
-                url: `/api/note/${userData[counter].id}`,
-                method: 'DELETE',
-                headers: { 'Content-Type': 'application/json' },
-                data: JSON.stringify(data),
-                beforeSend:function(xhr){
-                    xhr.setRequestHeader('Authorization', `Bearer ${localStorage.jwtToken}`);
-                },
-                success: (response) => {
-                    console.log("DELETED!");
-                },
-        
-                error: (err) => {
-                    console.log("NOT DELETED");
-                }
-                    
-            });
-                window.location.reload();
-            }
-    
-            $('#TextHolderForm').off('submit');
-
-            
-    })
-})
-
-  $('.updatePost').click(function(){
-    $('.editPost').attr('hidden', false);
-    $('.updatePost').attr('hidden', true);
-    $('#TextHolder').attr('disabled', true);
-    $('#TextHolderForm').on('submit', function(event){
-        event.preventDefault();
-        const userSubmission = $('#TextHolder').val();
-        const data = { id:`${userData[counter].id}`, content: `${userSubmission}`, title:`${userData[counter].title}`};
-        $.ajax({
-            url: `/api/note/${userData[counter].id}`,
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            data: JSON.stringify(data),
-            beforeSend:function(xhr){
-                xhr.setRequestHeader('Authorization', `Bearer ${localStorage.jwtToken}`);
-            },
-            success: (response) => {
-                console.log("UPDATED!");
-            },
-    
-            error: (err) => {
-                console.log("NOT UPDATED");
-            }
-            });
-            $('#TextHolderForm').off('submit');
-            window.location.reload();
-    })
-})
-
-let submissionValue = null;
-    $('.listView').click(function(){
-        $('.PostHolder').attr('hidden', true);
-        $(".test").html('');
-        for(i = userData.length-1; i > -1; i--){
-            if(userData[i].content.length > 50){
-            $(".test").append(`<div class="${i} style"><p>${i}</p><img class="${i}" src='${userData[i].title}'><p class="${i}">${userData[i].content.substring(0,30)+'...'}</p></div>`)
-            }
-            else{
-            $(".test").append(`<div class="${i} style"><p>${i}</p><img class="${i}" src='${userData[i].title}'><p class="${i}">${userData[i].content}</p></div>`)
-            }
-        }
-        $(window).scrollTop(0);
-
-    })
-
-$('.test').on('click', function(event){
-        event.stopPropagation();
-        window.scrollTo(0,0);
-        $('.PostHolder').attr('hidden', false);
-        $('.listHolder').attr('hidden', false);
-        let postValue = ($(event.target).attr('class'));
-        console.log(postValue);
-        counter = postValue;
-        $('.ComicHome').html(`<img src = "${userData[counter].title}" alt="cartoon strip">`)
-        $('#TextHolder').val(
-            `${userData[counter].content}`
-    ) 
-})
-
+$(handleFunctions);
