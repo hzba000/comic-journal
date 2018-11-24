@@ -10,6 +10,7 @@ function customCheck(){
 
 function getComic(){
     $.getJSON(url, displayDataApi)
+    displayDate();
 }
 
 
@@ -25,8 +26,6 @@ function is_url(str)
           return false;
         }
 }
-
-
 
 function displayDataApi(data){
     let test = is_url(customURL);
@@ -49,7 +48,7 @@ function displayDataApi(data){
 
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
-function myFunction() {
+function dropDown() {
     document.getElementById("myDropdown").classList.toggle("show");
 }
 
@@ -97,26 +96,27 @@ $('#TextHolderForm').on('submit', function(event){
         });
 })
 
-        //Display Date
-        var today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth()+1; //January is 0!
-        var yyyy = today.getFullYear();
-        
-        if(dd<10) {
-            dd = '0'+dd
-        } 
-        
-        if(mm<10) {
-            mm = '0'+mm
-        } 
-        
-        today = mm + '/' + dd + '/' + yyyy;
-        console.log("today is" + today);
+function displayDate(){
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+    
+    if(dd<10) {
+        dd = '0'+dd
+    } 
+    
+    if(mm<10) {
+        mm = '0'+mm
+    } 
+    
+    today = mm + '/' + dd + '/' + yyyy;
+    console.log("today is" + today);
 
-        $('.date').html(today);
+    $('.date').html(today);
+}
 
-        $(customCheck);
+$(customCheck);
 
         
 

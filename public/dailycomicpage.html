@@ -6,49 +6,37 @@
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
     <link href="https://fonts.googleapis.com/css?family=Autour+One|Bangers|Gochi+Hand|Love+Ya+Like+A+Sister|Patrick+Hand+SC|Roboto" rel="stylesheet">    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
-    <header> 
-        <div class="navbar">
-                <div class="dropdown">
-                  <button class="dropbtn"><img src="./images/cartoon_menu.png" height="50px" width="50px">
-                    <i class="fa fa-caret-down"></i>
-                  </button>
-                  <div class="dropdown-content">
-                    <a href="dailycomicpage.html">Add a comic</a>
-                    <a href="previouspost.html">Saved Posts</a>
-                    <a href="profile.html">Profile</a>
-                    <a class="logout" href="/"> Logout</a>
-                  </div>
-                </div> 
-                <h1> Cartoon Journal </h1>
-        </div>
-    </header>
+        <header> 
+            <div class="navbar">
+                    <div class="dropdown">
+                    <button class="dropbtn"><img src="./images/cartoon_menu.png" height="50px" width="50px">
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="dailycomicpage.html">Add a comic</a>
+                        <a href="previouspost.html">Saved Posts</a>
+                        <a href="profile.html">Profile</a>
+                        <a class="logout" href="/"> Logout</a>
+                    </div>
+                    </div> 
+                    <h1> Cartoon Journal </h1>
+            </div>
+        </header>
+        
         <main>
-        <!-- <div class = Holder> -->
-            <!-- <div class= PostHolder> -->
                 <form id="TextHolderForm"  onsubmit="location.href = 'previouspost.html';return false;">
                     <fieldset>
                         <legend></legend>
-                        <!-- <div class= "ComicHolder"> -->
                                 <h2> Submit your Cartoon </h2>
                                 <h3 class="date"></h3>
                                 <div class="ComicHome"></div>
                                 <label for="TextHolder">My thoughts...</label>
                                 <textarea id="TextHolder" required type="submit" value="submit" ></textarea>
                                 <div><button class= "submitButton"> Submit </button></div>
-
-                        <!-- </div> -->
-                        <!-- <label for="TextHolder">My thoughts...</label>
-                        <textarea id="TextHolder" required></textarea> -->
-                        <!-- <div> -->
-                            <!-- <button type="submit" class= "submitButton" onclick="location.href = 'previouspost.html'"> Submit </button> -->
-                        <!-- </div> -->
                     </fieldset>
-                    <!-- <br><br> -->
-
                 </form>
         </main>
-            <!-- </div> -->
-        <!-- </div> -->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="dailycomicpage.js"></script>
 </body>

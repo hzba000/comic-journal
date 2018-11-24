@@ -113,9 +113,9 @@ let userData = null;
   //This feeds the callback function necessary for ajax call, which receives data
   //and process it for displaying on screen
   function feedDataToDisplay(){
-    getDataApi(displayDataApi);
-    alert("Okay! Redirecting to your post library!");
-    $('.updatePost').attr('hidden', true);
+        getDataApi(displayDataApi);
+        alert("Okay! Redirecting to your post library!");
+        $('.updatePost').attr('hidden', true);
 
   } 
   
@@ -127,23 +127,22 @@ let userData = null;
   
   /* When the user clicks on the button, 
   toggle between hiding and showing the dropdown content */
-  function myFunction() {
+  function dropDown() {
       document.getElementById("myDropdown").classList.toggle("show");
   }
-  
-  // Close the dropdown menu if the user clicks outside of it
-  window.onclick = function(event) {
-    if (!event.target.matches('.dropbtn')) {
-  
-      var dropdowns = document.getElementsByClassName("dropdown-content");
-      var i;
-      for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-          openDropdown.classList.remove('show');
-        }
-      }
-    }
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn')) {
+        
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+                }
+            }
+            }
   }
   
   //DROP DOWN MENU STUFF END!
@@ -158,27 +157,27 @@ let userData = null;
   $('.deletePost').click(function(){
     $('#TextHolderForm').on('submit', function(event){
         event.preventDefault();
-            const data = { id:`${userData[counter].id}`};
-            var checkDelete = confirm("Are you sure you want to delete your post?");
-            if (checkDelete === true){
-                $.ajax({
-                    url: `/api/note/${userData[counter].id}`,
-                    method: 'DELETE',
-                    headers: { 'Content-Type': 'application/json' },
-                    data: JSON.stringify(data),
-                    beforeSend:function(xhr){
-                        xhr.setRequestHeader('Authorization', `Bearer ${localStorage.jwtToken}`);
-                    },
-                    success: (response) => {
-                        console.log("DELETED!");
-                    },
+        const data = { id:`${userData[counter].id}`};
+        var checkDelete = confirm("Are you sure you want to delete your post?");
+        if (checkDelete === true){
+            $.ajax({
+                url: `/api/note/${userData[counter].id}`,
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                data: JSON.stringify(data),
+                beforeSend:function(xhr){
+                    xhr.setRequestHeader('Authorization', `Bearer ${localStorage.jwtToken}`);
+                },
+                success: (response) => {
+                    console.log("DELETED!");
+                },
         
-                    error: (err) => {
-                        console.log("NOT DELETED");
-                    }
+                error: (err) => {
+                    console.log("NOT DELETED");
+                }
                     
-                });
-                    window.location.reload();
+            });
+                window.location.reload();
             }
     
             $('#TextHolderForm').off('submit');
@@ -193,23 +192,23 @@ let userData = null;
     $('#TextHolder').attr('disabled', true);
     $('#TextHolderForm').on('submit', function(event){
         event.preventDefault();
-            const userSubmission = $('#TextHolder').val();
-            const data = { id:`${userData[counter].id}`, content: `${userSubmission}`, title:`${userData[counter].title}`};
-            $.ajax({
-                url: `/api/note/${userData[counter].id}`,
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                data: JSON.stringify(data),
-                beforeSend:function(xhr){
-                    xhr.setRequestHeader('Authorization', `Bearer ${localStorage.jwtToken}`);
-                },
-                success: (response) => {
-                    console.log("UPDATED!");
-                },
+        const userSubmission = $('#TextHolder').val();
+        const data = { id:`${userData[counter].id}`, content: `${userSubmission}`, title:`${userData[counter].title}`};
+        $.ajax({
+            url: `/api/note/${userData[counter].id}`,
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            data: JSON.stringify(data),
+            beforeSend:function(xhr){
+                xhr.setRequestHeader('Authorization', `Bearer ${localStorage.jwtToken}`);
+            },
+            success: (response) => {
+                console.log("UPDATED!");
+            },
     
-                error: (err) => {
-                    console.log("NOT UPDATED");
-                }
+            error: (err) => {
+                console.log("NOT UPDATED");
+            }
             });
             $('#TextHolderForm').off('submit');
             window.location.reload();
@@ -217,35 +216,32 @@ let userData = null;
 })
 
 let submissionValue = null;
-$('.listView').click(function(){
-    $('.PostHolder').attr('hidden', true);
-    $(".test").html('');
-    for(i = userData.length-1; i > -1; i--){
-        if(userData[i].content.length > 50){
-        $(".test").append(`<div class="${i}"><p>${i}</p><img class="${i}" src='${userData[i].title}'><p class="${i}">${userData[i].content.substring(0,30)+'...'}</p></div>`)
+    $('.listView').click(function(){
+        $('.PostHolder').attr('hidden', true);
+        $(".test").html('');
+        for(i = userData.length-1; i > -1; i--){
+            if(userData[i].content.length > 50){
+            $(".test").append(`<div class="${i} style"><p>${i}</p><img class="${i}" src='${userData[i].title}'><p class="${i}">${userData[i].content.substring(0,30)+'...'}</p></div>`)
+            }
+            else{
+            $(".test").append(`<div class="${i} style"><p>${i}</p><img class="${i}" src='${userData[i].title}'><p class="${i}">${userData[i].content}</p></div>`)
+            }
         }
-        else{
-        $(".test").append(`<div class="${i}"><p>${i}</p><img class="${i}" src='${userData[i].title}'><p class="${i}">${userData[i].content}</p></div>`)
-        }
-    }
-    $(window).scrollTop(0);
+        $(window).scrollTop(0);
 
-})
+    })
 
 $('.test').on('click', function(event){
-    event.stopPropagation();
-    window.scrollTo(0,0);
-    $('.PostHolder').attr('hidden', false);
-    $('.listHolder').attr('hidden', false);
-    let postValue = ($(event.target).attr('class'));
-    console.log(postValue);
-    counter = postValue;
-    $('.ComicHome').html(`<img src = "${userData[counter].title}" alt="cartoon strip">`)
-    $('#TextHolder').val(
-        `${userData[counter].content}`
-) 
+        event.stopPropagation();
+        window.scrollTo(0,0);
+        $('.PostHolder').attr('hidden', false);
+        $('.listHolder').attr('hidden', false);
+        let postValue = ($(event.target).attr('class'));
+        console.log(postValue);
+        counter = postValue;
+        $('.ComicHome').html(`<img src = "${userData[counter].title}" alt="cartoon strip">`)
+        $('#TextHolder').val(
+            `${userData[counter].content}`
+    ) 
 })
 
-window.onbeforeunload = function() {
-    prompt( "Leaving this page will reset the wizard");
-};

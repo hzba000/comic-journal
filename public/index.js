@@ -1,7 +1,5 @@
 $(deleteAuthenticatedUserFromCache);
 
-
-
 function deleteAuthenticatedUserFromCache() {
     localStorage.removeItem('jwtToken');
     localStorage.removeItem('userid');
