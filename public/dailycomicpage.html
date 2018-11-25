@@ -1,15 +1,19 @@
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Comic Journal</title>
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
-    <link href="https://fonts.googleapis.com/css?family=Autour+One|Bangers|Gochi+Hand|Love+Ya+Like+A+Sister|Patrick+Hand+SC|Roboto" rel="stylesheet">    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
-        <header> 
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Comic Journal</title>
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+        <link href="https://fonts.googleapis.com/css?family=Autour+One|Bangers|Gochi+Hand|Love+Ya+Like+A+Sister|Patrick+Hand+SC|Roboto" rel="stylesheet">    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    </head>
+
+    <body>
+
+        <header role="banner" aria-live="polite"> 
             <div class="navbar">
                     <div class="dropdown">
-                    <button class="dropbtn"><img src="./images/cartoon_menu.png" height="50px" width="50px">
+                    <button class="dropbtn"><img src="./images/cartoon_menu.png" alt="menu-icon" height="50px" width="50px">
                         <i class="fa fa-caret-down"></i>
                     </button>
                     <div class="dropdown-content">
@@ -21,9 +25,9 @@
                     </div> 
                     <h1> Cartoon Journal </h1>
             </div>
-        </header>
-        
-        <main>
+        </header> 
+
+        <main role="main" aria-live="polite">
                 <form id="TextHolderForm"  onsubmit="location.href = 'previouspost.html';return false;">
                     <fieldset>
                         <legend></legend>
@@ -37,7 +41,8 @@
                 </form>
         </main>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="dailycomicpage.js"></script>
-</body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="dailycomicpage.js"></script>
+
+    </body>
 </html>

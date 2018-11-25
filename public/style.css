@@ -1,10 +1,6 @@
-/* .style{
-  width:300px;
-  overflow:hidden;
-} */
-
 *{
-  font-family: 'Autour One', cursive;}
+  font-family: 'Autour One', sans-serif;}
+
 /* profile specific */
 .badges{
   display:flex;

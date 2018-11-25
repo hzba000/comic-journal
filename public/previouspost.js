@@ -86,7 +86,7 @@ let userData = null;
             //If they are not on their first post, match the comic and content to the post with the counter value that matches data array
             else{
                 $('#TextHolder').val(`${userData[counter].content}`);
-                $('.ComicHome').html(`<img src = "${userData[counter].title}" alt="cartoon strip">`)
+                $('.ComicHome').html(`<img src = "${userData[counter].title}" alt="comic-${counter}">`)
                 $('.date').html(`${new Date(userData[counter].createDate).toLocaleDateString()}`); //Set the date
                 $(window).scrollTop(0); // Scroll to top so comic has better visibility
         }           
@@ -121,7 +121,7 @@ console.log(counter);
             //If user is not on their most recent post, display comic and content that matches counter, which matches data array position
             else{
             $('#TextHolder').val(`${userData[counter].content}`)
-            $('.ComicHome').html(`<img src = "${userData[counter].title}" alt="cartoon strip">`)
+            $('.ComicHome').html(`<img src = "${userData[counter].title}" alt="comic-${counter}">`)
             $('.date').html(`${new Date(userData[counter].createDate).toLocaleDateString()}`);//Displays date
             $(window).scrollTop(0);//Scrolls to top to clearly display comic to user
         }
@@ -208,10 +208,10 @@ console.log(counter);
             $(".test").html('');
             for(let i = userData.length-1; i > -1; i--){
                 if(userData[i].content.length > 50){
-                    $(".test").append(`<div class="${i}"><p>${i}</p><img class="${i}" src='${userData[i].title}'><p class="${i}">${userData[i].content.substring(0,30)+'...'}</p></div>`)
+                    $(".test").append(`<div class="${i}"><p>${i}</p><img class="${i}" src='${userData[i].title} alt="comic-${i}"'><p class="${i}">${userData[i].content.substring(0,30)+'...'}</p></div>`)
             }
                 else{
-                    $(".test").append(`<div class="${i}"><p>${i}</p><img class="${i}" src='${userData[i].title}'><p class="${i}">${userData[i].content}</p></div>`)
+                    $(".test").append(`<div class="${i}"><p>${i}</p><img class="${i}" src='${userData[i].title}' alt="comic-${i}"'><p class="${i}">${userData[i].content}</p></div>`)
             }
         }
             $(window).scrollTop(0);
@@ -228,7 +228,7 @@ console.log(counter);
             let postValue = ($(event.target).attr('class'));
             console.log(postValue);
             counter = postValue;
-            $('.ComicHome').html(`<img src = "${userData[counter].title}" alt="cartoon strip">`)
+            $('.ComicHome').html(`<img src = "${userData[counter].title}" alt="comic-${counter}">`)
             $('#TextHolder').val(
                 `${userData[counter].content}`
         ) 
