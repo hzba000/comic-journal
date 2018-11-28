@@ -1,5 +1,6 @@
 *{
-  font-family: 'Autour One', cursive;}
+  font-family: 'Autour One', sans-serif;}
+
 /* profile specific */
 .badges{
   display:flex;
@@ -55,10 +56,13 @@ html{
   justify-content:center;
 }
 
-.comicHome img{
-/* max-width:350px; */
+.ComicHome img{
+max-width:100%;
+/*max-width:100%*/
+/* max-width:350px */
 /* margin-left:60px; */
 margin-bottom: 10px;
+
 
 }
 
@@ -207,9 +211,18 @@ margin-bottom: 10px;
   margin:10px;
 }
 
+
 .listHolder img{
-  height: 300px;
+  /* height: 300px; */
+  /* width:300px; */
+  /* max-width:100%; */
+  /* width: auto; */
+  /* height:100%; */
+  height:300px;
   width:300px;
+  object-fit:cover;
+  border: 5px black solid;
+
 }
 
 hidden{
@@ -222,44 +235,41 @@ hidden{
 
 
  
-    /* background-color:blue; */
+/* background-color:blue; */
 
-    .previousPost, .nextPost, .deletePost,.listView,.submitButton {
-      color: #494949 !important;
-      text-transform: uppercase;
-      background: #ffffff;
-      /* padding: 20px; */
-      border: 4px solid #494949 !important;
-      border-radius: 6px;
-      display: inline-block;
-      height:100px;
-      width: 100px;
-      margin-bottom: 10px;
+  .previousPost, .nextPost, .deletePost,.listView,.submitButton {
+  color: #494949 !important;
+  text-transform: uppercase;
+  background: #ffffff;
+  /* padding: 20px; */
+  border: 4px solid #494949 !important;
+  border-radius: 6px;
+  display: inline-block;
+  height:100px;
+  width: 100px;
+  margin-bottom: 10px;
 
-      }
+}
 
-      .updatePost, .editPost{
-        color: #494949 !important;
-        text-transform: uppercase;
-        background: #ffffff;
-        padding: 20px;
-        border: 4px solid #494949 !important;
-        border-radius: 6px;
-        /* display: inline-block; */
-        height:100px;
-        width: 100px;
-      }
+.updatePost, .editPost{
+  color: #494949 !important;
+  text-transform: uppercase;
+  background: #ffffff;
+  padding: 20px;
+  border: 4px solid #494949 !important;
+  border-radius: 6px;
+  /* display: inline-block; */
+  height:100px;
+  width: 100px;
+}
 
-      .previousPost:hover, .nextPost:hover, .editPost:hover, .deletePost:hover,.updatePost:hover ,.listView:hover, .submitButton:hover {
-        color: #ffffff !important;
-        background: #f6b93b;
-        border-color: #f6b93b !important;
-        transition: all 0.4s ease 0s;
-        cursor:pointer;
-        }
-  
-
-
+.previousPost:hover, .nextPost:hover, .editPost:hover, .deletePost:hover,.updatePost:hover ,.listView:hover, .submitButton:hover {
+  color: #ffffff !important;
+  background: #f6b93b;
+  border-color: #f6b93b !important;
+  transition: all 0.4s ease 0s;
+  cursor:pointer;
+}
 
 /*End Buttons*/
 
@@ -353,7 +363,7 @@ fieldset{
   
   /* Add a red background color to navbar links on hover */
   .navbar a:hover, .dropdown:hover .dropbtn {
-    background-color: red;
+    background-color: #f6b93b;
   }
   
   /* Dropdown content (hidden by default) */

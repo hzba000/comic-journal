@@ -1,7 +1,3 @@
-$(deleteAuthenticatedUserFromCache);
-
-
-
 function deleteAuthenticatedUserFromCache() {
     localStorage.removeItem('jwtToken');
     localStorage.removeItem('userid');
@@ -9,4 +5,7 @@ function deleteAuthenticatedUserFromCache() {
     localStorage.removeItem('name');
     localStorage.removeItem('email');
 }
+
+//Delete user information from local storage when redirected to index page
+$(deleteAuthenticatedUserFromCache);
 
