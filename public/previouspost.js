@@ -208,7 +208,7 @@ console.log(counter);
             $(".test").html('');
             for(let i = userData.length-1; i > -1; i--){
                 if(userData[i].content.length > 25){
-                    $(".test").append(`<div class="${i}"><p>${i}</p><img class="${i}" src='${userData[i].title} alt="comic-${i}"'><p class="${i}">${userData[i].content.substring(0,30)+'...'}</p></div>`)
+                    $(".test").append(`<div class="${i}"><p>${i}</p><img class="${i}" src='${userData[i].title}' alt="comic-${i}"'><p class="${i}">${userData[i].content.substring(0,25)+'...'}</p></div>`)
             }
                 else{
                     $(".test").append(`<div class="${i}"><p>${i}</p><img class="${i}" src='${userData[i].title}' alt="comic-${i}"'><p class="${i}">${userData[i].content}</p></div>`)
