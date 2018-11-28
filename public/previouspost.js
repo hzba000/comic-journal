@@ -201,7 +201,7 @@ console.log(counter);
     })
 }
 
-    
+    //Handles Library View (Formerly list view)
     function displayListViewImage(){
         $('.listView').click(function(){
             $('.PostHolder').attr('hidden', true);
