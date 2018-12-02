@@ -80,13 +80,13 @@ let userData = null;
             //If the user is on their first ever post, continue to show them that post if they attempt to click 'previous'
             if(counter <= 0){ 
                 counter = 0;
-                $('#TextHolder').val(`${userData[0].content}`)
-                $('.ComicHome').html(`<img src = "${userData[0].title}" alt="cartoon strip">`)
+                $('#TextHolder').val(`${userData[0].content}`);
+                $('.ComicHome').html(`<img src = "${userData[0].title}" alt="cartoon strip">`);
         }
             //If they are not on their first post, match the comic and content to the post with the counter value that matches data array
             else{
                 $('#TextHolder').val(`${userData[counter].content}`);
-                $('.ComicHome').html(`<img src = "${userData[counter].title}" alt="comic-${counter}">`)
+                $('.ComicHome').html(`<img src = "${userData[counter].title}" alt="comic-${counter}">`);
                 $('.date').html(`${new Date(userData[counter].createDate).toLocaleDateString()}`); //Set the date
                 $(window).scrollTop(0); // Scroll to top so comic has better visibility
         }           
@@ -120,8 +120,8 @@ console.log(counter);
 
             //If user is not on their most recent post, display comic and content that matches counter, which matches data array position
             else{
-            $('#TextHolder').val(`${userData[counter].content}`)
-            $('.ComicHome').html(`<img src = "${userData[counter].title}" alt="comic-${counter}">`)
+            $('#TextHolder').val(`${userData[counter].content}`);
+            $('.ComicHome').html(`<img src = "${userData[counter].title}" alt="comic-${counter}">`);
             $('.date').html(`${new Date(userData[counter].createDate).toLocaleDateString()}`);//Displays date
             $(window).scrollTop(0);//Scrolls to top to clearly display comic to user
         }
