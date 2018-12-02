@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
 
-const noteSchema = new mongoose.Schema({
+const comicSchema = new mongoose.Schema({
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'user' },
     title: { type: String, required: true },
     content: { type: String, required: true },
@@ -9,7 +9,7 @@ const noteSchema = new mongoose.Schema({
     updateDate: { type: Date, default: Date.now }
 });
 
-noteSchema.methods.serialize = function () {
+comicSchema.methods.serialize = function () {
     let user;
     if (typeof this.user.serialize === 'function') {
         user = this.user.serialize();
@@ -27,13 +27,15 @@ noteSchema.methods.serialize = function () {
     };
 };
 
-const NoteJoiSchema = Joi.object().keys({
+
+//Validation
+const ComicJoiSchema = Joi.object().keys({
     user: Joi.string().optional(),
     title: Joi.string().min(1).required(),
     content: Joi.string().min(1).required(),
     createDate: Joi.date().timestamp()
 });
 
-const Note = mongoose.model('note', noteSchema);
+const Comic = mongoose.model('comic', comicSchema);
 
-module.exports = { Note, NoteJoiSchema };
+module.exports = { Comic, ComicJoiSchema };

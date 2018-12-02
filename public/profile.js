@@ -6,7 +6,7 @@ $('.userInfo').append(`Hello, ${user}!<br> Here are your achievements!`);
 function getDataApi() {
     $.ajax({
         type: 'GET',
-        url: `/api/note`,
+        url: `/api/comic`,
         contentType: 'application/json',
         dataType: 'json',
         data: undefined,

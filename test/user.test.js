@@ -3,8 +3,6 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 
 const faker = require('faker');
-
-const { HTTP_STATUS_CODES } = require('../config');
 const { startServer, stopServer, app } = require('../server.js');
 const { User } = require('../user/user.model');
 
@@ -43,39 +41,6 @@ describe('Integration tests for: /api/user', function () {
 
     after(function () {
         return stopServer();
-    });
-
-    it('Should return all users', function () {
-        return chai.request(app)
-            .get('/api/user')
-            .then(res => {
-                expect(res).to.have.status(200);
-                expect(res).to.be.json;
-                expect(res.body).to.be.a('array');
-                expect(res.body).to.have.lengthOf.at.least(1);
-                expect(res.body[0]).to.include.keys('id', 'name', 'username', 'email');
-                expect(res.body[0]).to.not.include.keys('password');
-            });
-    });
-
-    it('Should return a specific user', function () {
-        let foundUser;
-        return chai.request(app)
-            .get('/api/user')
-            .then(res => {
-                expect(res).to.have.status(200);
-                expect(res).to.be.json;
-                expect(res.body).to.be.a('array');
-                expect(res.body).to.have.lengthOf.at.least(1);
-                foundUser = res.body[0];
-                return chai.request(app).get(`/api/user/${foundUser.id}`);
-            })
-            .then(res => {
-                expect(res).to.have.status(200);
-                expect(res).to.be.json;
-                expect(res.body).to.be.a('object');
-                expect(res.body.id).to.equal(foundUser.id);
-            });
     });
 
     it('Should create a new user', function () {

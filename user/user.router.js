@@ -45,27 +45,5 @@ userRouter.post('/', (request, response) => {
     });
 });
 
-// RETRIEVE USERS
-userRouter.get('/', (request, response) => {
-    User.find()
-        .then(users => {
-            return response.status(200).json(
-                users.map(user => user.serialize())
-            );
-        })
-        .catch(error => {
-            return response.status(500).json(error);
-        });
-});
-// RETRIEVE ONE USER
-userRouter.get('/:userid', (request, response) => {
-    User.findById(request.params.userid)
-        .then(user => {
-            return response.status(200).json(user.serialize());
-        })
-        .catch(error => {
-            return response.status(500).json(error);
-        });
-});
 
 module.exports = { userRouter };

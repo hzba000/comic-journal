@@ -1,13 +1,17 @@
+//HTTP utility module handles our AJAX requests
+//CACHE utility module handles our storage of information
 const HTTP = window.HTTP_MODULE;
 const CACHE = window.CACHE_MODULE;
 
 $(document).ready(onPageLoad);
 
+//When you submit the sign-up or login form, it will execute these functions...
 function onPageLoad() {
     $('#sign-up-form').submit(onSignUpSubmit);
     $('#login-form').submit(onLoginSubmit);
 }
 
+//Captures user input and utilizes imported HTTP module function for sign up and validation of user
 function onSignUpSubmit(event) {
     event.preventDefault();
 
@@ -35,6 +39,7 @@ function onSignUpSubmit(event) {
     });
 }
 
+//Captures user input and utilizes imported HTTP module function for login and validation of user
 function onLoginSubmit(event) {
     event.preventDefault();
 

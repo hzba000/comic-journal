@@ -1,5 +1,6 @@
 *{
-  font-family: 'Autour One', sans-serif;}
+  font-family: 'Autour One', sans-serif;
+}
 
 /* profile specific */
 .badges{
@@ -39,10 +40,6 @@
 /* profile specific end */
 
 h1,h2, h3, label, .submitButton, .ButtonHolder{
-  /* max-width:350px; */
-  /* margin-left:60px; */
-  /* width:100%; */
-  /* height:200px; */
   text-align:center;
 }
 
@@ -58,17 +55,12 @@ html{
 
 .ComicHome img{
 max-width:100%;
-/*max-width:100%*/
-/* max-width:350px */
-/* margin-left:60px; */
 margin-bottom: 10px;
 
 
 }
 
 #TextHolder{
-  /* max-width:350px; */
-  /* margin-left:60px; */
   width:100%;
   height:200px;
   margin-bottom: 10px;
@@ -77,7 +69,6 @@ margin-bottom: 10px;
 
 #TextHolder {
 	width:500px;
-	/* overflow:hidden; */
 	background-color:#FFF;
 	color:#222;
 	font-family:Courier, monospace;
@@ -85,10 +76,6 @@ margin-bottom: 10px;
 	font-size:24px;
 	resize:none;
 	line-height:40px;
-	/* padding-left:100px;
-	padding-right:100px;
-	padding-top:45px;
-	padding-bottom:34px; */
 	background-image:url(./images/line_image_blue_2.png), url(https://static.tumblr.com/maopbtg/nBUmgtogx/paper.png);
 	background-repeat:repeat-y, repeat;
 	-webkit-border-radius:12px;
@@ -188,9 +175,6 @@ margin-bottom: 10px;
 
 /* Index specific end */
 
-/*daily comic specific*/
-
-/*daily comic specific end*/
 
 /* previouspost specific */
 
@@ -213,11 +197,6 @@ margin-bottom: 10px;
 
 
 .listHolder img{
-  /* height: 300px; */
-  /* width:300px; */
-  /* max-width:100%; */
-  /* width: auto; */
-  /* height:100%; */
   height:300px;
   width:300px;
   object-fit:cover;
@@ -232,9 +211,6 @@ hidden{
 
 /*Buttons*/
 
-
-
- 
 /* background-color:blue; */
 
   .previousPost, .nextPost, .deletePost,.listView,.submitButton {
@@ -258,7 +234,6 @@ hidden{
   padding: 20px;
   border: 4px solid #494949 !important;
   border-radius: 6px;
-  /* display: inline-block; */
   height:100px;
   width: 100px;
 }
@@ -306,12 +281,6 @@ body{
     text-align: center;
 }
 
-/* #TextHolder{
-    max-width:350px;
-    margin-left:60px;
-    width:100%;
-    height:200px;
-} */
 
 label{
     display:block;
@@ -396,15 +365,12 @@ fieldset{
     display: block;
   }
 
-
+  /*Media Queries*/
 
   @media only screen and (max-width:645px){
 
     h2, h3, label, .submitButton, .ButtonHolder{
       max-width:350px;
-      /* margin-left:60px; */
-      /* width:100%; */
-      /* height:200px; */
       text-align:center;
     }
     html{
@@ -413,15 +379,13 @@ fieldset{
     }
     
     .ComicHome img{
-    max-width:350px;
-    /* margin-left:60px; */
-        margin-bottom: 10px;
+      max-width:350px;
+      margin-bottom: 10px;
 
     }
     
     #TextHolder{
       max-width:350px;
-      /* margin-left:60px; */
       width:100%;
       height:200px;
       margin-bottom: 10px;
@@ -441,9 +405,6 @@ fieldset{
 
     h2, h3, label, .submitButton, .ButtonHolder{
       max-width:250px;
-      /* margin-left:20px; */
-      /* width:100%; */
-      /* height:200px; */
       text-align:center;
     }
     html{
@@ -453,14 +414,12 @@ fieldset{
     
     .ComicHome img{
       max-width:250px;
-    /* margin-left:20px; */
-    margin-bottom: 10px;
+      margin-bottom: 10px;
 
     }
     
     #TextHolder{
       max-width:250px;
-      /* margin-left:20px; */
       width:100%;
       height:200px;
       margin-bottom: 10px;

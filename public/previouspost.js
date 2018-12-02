@@ -13,7 +13,7 @@ let userData = null;
     function getDataApi() {
     $.ajax({
         type: 'GET',
-        url: `/api/note`,
+        url: `/api/comic`,
         contentType: 'application/json',
         dataType: 'json',
         data: undefined,
@@ -147,7 +147,7 @@ console.log(counter);
             var checkDelete = confirm("Are you sure you want to delete your post?");
             if (checkDelete === true){
                 $.ajax({
-                    url: `/api/note/${userData[counter].id}`,
+                    url: `/api/comic/${userData[counter].id}`,
                     method: 'DELETE',
                     headers: { 'Content-Type': 'application/json' },
                     data: JSON.stringify(data),
@@ -180,7 +180,7 @@ console.log(counter);
             const userSubmission = $('#TextHolder').val();
             const data = { id:`${userData[counter].id}`, content: `${userSubmission}`, title:`${userData[counter].title}`};
             $.ajax({
-                url: `/api/note/${userData[counter].id}`,
+                url: `/api/comic/${userData[counter].id}`,
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 data: JSON.stringify(data),

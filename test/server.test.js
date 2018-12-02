@@ -17,7 +17,7 @@ describe('Integration tests for: /', function () {
 
     it('Should return index.html', function () {
         chai.request(app)
-            .get('/')
+            .get('/') //Makes sure that when root is accessed, server is appropriately serving static assets
             .then(res => {
                 expect(res).to.have.status(200);
                 expect(res).to.be.html;

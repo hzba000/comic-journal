@@ -2,24 +2,27 @@ let comic_image_global = null;
 let customURL = null;
 let url = `https://cors-anywhere.herokuapp.com/https://xkcd.com/${Math.floor(Math.random() * 614)}/info.0.json`;
 
+//On Page Load, checks to see if user wants to use a custom comic, if not, getComic is executed
 function customCheck(){
     customURL = prompt("If you want to use your own comic, feed me a comic image url, otherwise press OK");
     console.log(customURL);
     getComic()
 }
 
+//Gets comic for display, sets date, sends data to displayDataApi for display
 function getComic(){
     $.getJSON(url, displayDataApi)
     displayDate();
 }
 
-
+//Validates that if a user wants to use a custom comic, they must provide a valid url
 function is_url(str){
     regexp =  /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
     if (regexp.test(str)){return true;}
     else{return false;}
 }
 
+//Displays comic and content, the comic is custom if a url is provided, otherwise it is generated
 function displayDataApi(data){
     let test = is_url(customURL); //validates that an image has been submitted
     if(test == true){data.img = customURL;}
@@ -36,7 +39,7 @@ $('#TextHolderForm').on('submit', function(event){
         const userSubmission = $('#TextHolder').val();
         const data = { title: `${comic_image_global}`, content: `${userSubmission}`};
         $.ajax({
-            url: '/api/note',
+            url: '/api/comic',
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             dataType: 'json',
@@ -80,6 +83,8 @@ window.onclick = function(event) {
 
 //DROP DOWN MENU STUFF END!
 
+
+//This function displays the date! :)
 function displayDate(){
     var today = new Date();
     var dd = today.getDate();

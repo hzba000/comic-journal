@@ -5,6 +5,8 @@ const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt');
 const { User } = require('../user/user.model');
 const { JWT_SECRET } = require('../config');
 
+//This strategy is used to authenticate based on user info and password (What we need to trade for a JWT...)
+//This will be used with our passport Middleware to intercept requests from client to host
 const localStrategy = new LocalStrategy((username, password, passportVerify) => {
     let user;
     User.findOne({ username: username }).then(_user => {
@@ -32,6 +34,8 @@ const localStrategy = new LocalStrategy((username, password, passportVerify) => 
     });
 });
 
+//This strategy is used to authenticate based on JWT token
+//This will be used with passport Middleware to intercept requests from client to host
 const jwtStrategy = new JwtStrategy(
     {
         secretOrKey: JWT_SECRET,
