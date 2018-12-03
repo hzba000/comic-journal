@@ -27,7 +27,7 @@ function displayDataApi(data){
     if(test == true){data.img = customURL;}
     else if(test ==false){
         customURL = data.img;
-        alert("A comic is being generated for you. If you tried to use your own comic, try again with a valid url");
+        alert("A comic is being generated for you. If you tried to use your own comic, you can try again. Just click 'Add a comic' in the menu.");
     }
     const comic_image = data.img;
     comic_image_global = comic_image;
