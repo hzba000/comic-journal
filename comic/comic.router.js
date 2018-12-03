@@ -1,12 +1,13 @@
 const express = require('express');
 const Joi = require('joi');
-const noteRouter = express.Router();
+const comicRouter = express.Router();
 
 const { jwtPassportMiddleware } = require('../auth/auth.strategy');
-const { Note, NoteJoiSchema } = require('./note.model.js');
+const { Comic, ComicJoiSchema } = require('./comic.model.js');
 
-noteRouter.post('/', jwtPassportMiddleware, (request, response) => {
-    const newNote = {
+//SUBMIT A COMIC
+comicRouter.post('/', jwtPassportMiddleware, (request, response) => {
+    const newComic = {
         user: request.user.id,
         title: request.body.title,
         content: request.body.content,
@@ -14,12 +15,12 @@ noteRouter.post('/', jwtPassportMiddleware, (request, response) => {
     };
 
 
-    const validation = Joi.validate(newNote, NoteJoiSchema);
+    const validation = Joi.validate(newComic, ComicJoiSchema);
     if (validation.error) {
         return response.status(400).json({ error: validation.error });
     }
 
-    Note.create(newNote)
+    Comic.create(newComic)
         .then(createdUser => {
             return response.status(201).json(createdUser.serialize());
         })
@@ -28,12 +29,13 @@ noteRouter.post('/', jwtPassportMiddleware, (request, response) => {
         });
 });
 
-noteRouter.get('/', jwtPassportMiddleware, (request, response) => {
-    Note.find({ user: request.user.id })
+//GET ALL COMICS
+comicRouter.get('/', jwtPassportMiddleware, (request, response) => {
+    Comic.find({ user: request.user.id })
         .populate('user')
-        .then(notes => {
+        .then(comics => {
             return response.status(200).json(
-                notes.map(note => note.serialize())
+                comics.map(comic => comic.serialize())
             );
         })
         .catch(error => {
@@ -41,46 +43,31 @@ noteRouter.get('/', jwtPassportMiddleware, (request, response) => {
         });
 });
 
-
-noteRouter.get('/all', (request, response) => {
-    Note.find()
+// RETRIEVE ONE COMIC BY ID
+comicRouter.get('/:comicid', (request, response) => {
+    Comic.findById(request.params.comicid)
         .populate('user')
-        .then(notes => {
-            return response.status(200).json(
-                notes.map(note => note.serialize())
-            );
+        .then(comic => {
+            return response.status(200).json(comic.serialize());
         })
         .catch(error => {
             return response.status(500).json(error);
         });
 });
 
-
-// RETRIEVE ONE NOTE BY ID
-noteRouter.get('/:noteid', (request, response) => {
-    Note.findById(request.params.noteid)
-        .populate('user')
-        .then(note => {
-            return response.status(200).json(note.serialize());
-        })
-        .catch(error => {
-            return response.status(500).json(error);
-        });
-});
-
-// UPDATE NOTE BY ID
-noteRouter.put('/:noteid', jwtPassportMiddleware, (request, response) => {
-    const noteUpdate = {
+// UPDATE COMIC BY ID
+comicRouter.put('/:comicid', jwtPassportMiddleware, (request, response) => {
+    const comicUpdate = {
         title: request.body.title,
         content: request.body.content
     };
 
-    const validation = Joi.validate(noteUpdate, NoteJoiSchema);
+    const validation = Joi.validate(comicUpdate, ComicJoiSchema);
     if (validation.error) {
         return response.status(400).json({ error: validation.error });
     }
 
-    Note.findByIdAndUpdate(request.params.noteid, noteUpdate)
+    Comic.findByIdAndUpdate(request.params.comicid, comicUpdate)
         .then(() => {
             return response.status(204).end();
         })
@@ -89,9 +76,9 @@ noteRouter.put('/:noteid', jwtPassportMiddleware, (request, response) => {
         });
 });
 
-// REMOVE NOTE BY ID
-noteRouter.delete('/:noteid', jwtPassportMiddleware, (request, response) => {
-    Note.findByIdAndDelete(request.params.noteid)
+// REMOVE COMIC BY ID
+comicRouter.delete('/:comicid', jwtPassportMiddleware, (request, response) => {
+    Comic.findByIdAndDelete(request.params.comicid)
         .then(() => {
             return response.status(204).end();
         })
@@ -100,4 +87,4 @@ noteRouter.delete('/:noteid', jwtPassportMiddleware, (request, response) => {
         });
 });
 
-module.exports = { noteRouter };
+module.exports = { comicRouter };

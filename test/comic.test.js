@@ -4,26 +4,25 @@ const chaiHttp = require('chai-http');
 const jsonwebtoken = require('jsonwebtoken');
 const faker = require('faker');
 
-const { HTTP_STATUS_CODES, JWT_SECRET, JWT_EXPIRY } = require('../config');
+const {JWT_SECRET, JWT_EXPIRY } = require('../config');
 const { startServer, stopServer, app } = require('../server.js');
 const { User } = require('../user/user.model');
-const { Note } = require('../note/note.model');
+const { Comic } = require('../comic/comic.model');
 
 const expect = chai.expect; 
 chai.use(chaiHttp); 
 
-describe('Integration tests for: /api/note', function () {
+describe('Integration tests for: /api/comic', function () {
     let testUser, jwtToken;
 
-  
+    //The reason we put true here, is to differentiate our test and production servers in the startServer function in server.js
     before(function () {
-
         return startServer(true);
     });
 
 
     beforeEach(function () {
-        testUser = createFakerUser();
+        testUser = createFakerUser(); //We need a fake user to test on, so we create one here
 
         return User.hashPassword(testUser.password)
             .then(hashedPassword => {
@@ -33,11 +32,10 @@ describe('Integration tests for: /api/note', function () {
                     username: testUser.username,
                     password: hashedPassword
                 }).catch(err => {
-                    console.error(err);
                     throw new Error(err);
                 });
             })
-            .then(createdUser => {
+            .then(createdUser => { //Make sure that user has a JSON Web token to authenticate them before we test their data
                 testUser.id = createdUser.id;
 
                 jwtToken = jsonwebtoken.sign(
@@ -57,18 +55,17 @@ describe('Integration tests for: /api/note', function () {
                     }
                 );
 
-                const seedData = [];
+                const seedData = []; //Seed 10 dummy data comics
                 for (let i = 1; i <= 10; i++) {
-                    const newNote = createFakerNote();
-                    newNote.user = createdUser.id;
-                    seedData.push(newNote);
+                    const newComic = createFakerComic();
+                    newComic.user = createdUser.id;
+                    seedData.push(newComic);
                 }
-                return Note.insertMany(seedData)
+                return Comic.insertMany(seedData)
                     .catch(err => {
-                        console.error(err);
                         throw new Error(err);
-                    });
-            });
+                });
+        });
     });
 
     afterEach(function () {
@@ -79,7 +76,6 @@ describe('Integration tests for: /api/note', function () {
                     resolve(result);
                 })
                 .catch(err => {
-                    console.error(err);
                     reject(err);
                 });
         });
@@ -89,39 +85,39 @@ describe('Integration tests for: /api/note', function () {
         return stopServer();
     });
 
-    it('Should return user notes', function () {
+    it('Should return user comics', function () {
         return chai.request(app)
-            .get('/api/note')
-            .set('Authorization', `Bearer ${jwtToken}`)
-            .then(res => {
+            .get('/api/comic') //Make a fake get Request
+            .set('Authorization', `Bearer ${jwtToken}`) //Make sure JWT token is recognized
+            .then(res => { //Comics sent back in response object should meet these characteristics
                 expect(res).to.have.status(200);
                 expect(res).to.be.json;
                 expect(res.body).to.be.a('array');
                 expect(res.body).to.have.lengthOf.at.least(1);
-                const note = res.body[0];
-                expect(note).to.include.keys('user', 'title', 'content');
-                expect(note.user).to.be.a('object');
-                expect(note.user).to.include.keys('name', 'email', 'username');
-                expect(note.user).to.deep.include({
+                const comic = res.body[0];
+                expect(comic).to.include.keys('user', 'title', 'content');
+                expect(comic.user).to.be.a('object');
+                expect(comic.user).to.include.keys('name', 'email', 'username');
+                expect(comic.user).to.deep.include({
                     id: testUser.id,
                     username: testUser.username,
                     email: testUser.email,
                     name: testUser.name
                 });
-            });
+        });
     });
 
-    it('Should return a specific note', function () {
-        let foundNote;
-        return Note.find()
-            .then(notes => {
-                expect(notes).to.be.a('array');
-                expect(notes).to.have.lengthOf.at.least(1);
-                foundNote = notes[0];
+    it('Should return a specific comic', function () {//The main difference here is the addition of a parameterized id
+        let foundComic;
+        return Comic.find()
+            .then(comics => {
+                expect(comics).to.be.a('array');
+                expect(comics).to.have.lengthOf.at.least(1); // ensures seeding worked
+                foundComic = comics[0];
 
                 return chai.request(app)
-                    .get(`/api/note/${foundNote.id}`)
-                    .set('Authorization', `Bearer ${jwtToken}`);
+                    .get(`/api/comic/${foundComic.id}`)
+                    .set('Authorization', `Bearer ${jwtToken}`); //jwt token bearer authorization
             })
             .then(res => {
                 expect(res).to.have.status(200);
@@ -129,61 +125,61 @@ describe('Integration tests for: /api/note', function () {
                 expect(res.body).to.be.a('object');
                 expect(res.body).to.include.keys('user', 'title', 'content');
                 expect(res.body).to.deep.include({
-                    id: foundNote.id,
-                    title: foundNote.title,
-                    content: foundNote.content
+                    id: foundComic.id,
+                    title: foundComic.title,
+                    content: foundComic.content
                 });
-            });
+        });
     });
 
-    it('Should update a specific note', function () {
-        let noteToUpdate;
-        const newNoteData = createFakerNote();
-        return Note.find()
-            .then(notes => {
-                expect(notes).to.be.a('array');
-                expect(notes).to.have.lengthOf.at.least(1);
-                noteToUpdate = notes[0];
+    it('Should update a specific comic', function () {//We should get a 204 code back (empty response object)
+        let comicToUpdate;
+        const newComicData = createFakerComic();
+        return Comic.find()
+            .then(comics => {
+                expect(comics).to.be.a('array');
+                expect(comics).to.have.lengthOf.at.least(1); // ensures seeding worked
+                comicToUpdate = comics[0];
 
                 return chai.request(app)
-                    .put(`/api/note/${noteToUpdate.id}`)
+                    .put(`/api/comic/${comicToUpdate.id}`)
                     .set('Authorization', `Bearer ${jwtToken}`)
-                    .send(newNoteData);
+                    .send(newComicData);
             })
             .then(res => {
                 expect(res).to.have.status(204);
 
-                return Note.findById(noteToUpdate.id);
+                return Comic.findById(comicToUpdate.id);
             })
-            .then(note => {
-                expect(note).to.be.a('object');
-                expect(note).to.deep.include({
-                    id: noteToUpdate.id,
-                    title: newNoteData.title,
-                    content: newNoteData.content
+            .then(comic => {
+                expect(comic).to.be.a('object');
+                expect(comic).to.deep.include({
+                    id: comicToUpdate.id,
+                    title: newComicData.title,
+                    content: newComicData.content
                 });
-            });
+        });
     });
 
-    it('Should delete a specific note', function () {
-        let noteToDelete;
-        return Note.find()
-            .then(notes => {
-                expect(notes).to.be.a('array');
-                expect(notes).to.have.lengthOf.at.least(1);
-                noteToDelete = notes[0];
+    it('Should delete a specific comic', function () {//We chould get back a 204 code back (empty response object)
+        let comicToDelete;
+        return Comic.find()
+            .then(comics => {
+                expect(comics).to.be.a('array');
+                expect(comics).to.have.lengthOf.at.least(1); //ensures seeding worked
+                comicToDelete = comics[0];
 
                 return chai.request(app)
-                    .delete(`/api/note/${noteToDelete.id}`)
+                    .delete(`/api/comic/${comicToDelete.id}`)
                     .set('Authorization', `Bearer ${jwtToken}`);
             })
             .then(res => {
                 expect(res).to.have.status(204);
 
-                return Note.findById(noteToDelete.id);
+                return Comic.findById(comicToDelete.id);
             })
-            .then(note => {
-                expect(note).to.not.exist;
+            .then(comic => {
+                expect(comic).to.not.exist;
             });
     });
 
@@ -196,7 +192,7 @@ describe('Integration tests for: /api/note', function () {
         };
     }
 
-    function createFakerNote() {
+    function createFakerComic() {
         return {
             title: faker.lorem.sentence(),
             content: faker.lorem.paragraphs()
