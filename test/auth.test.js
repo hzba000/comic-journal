@@ -57,7 +57,7 @@ describe('Integration tests for: /api/auth', function () {
                 .catch(err => {
                     console.error(err);
                 });
-        });
+          });
     });
 
     afterEach(function () {
@@ -71,7 +71,7 @@ describe('Integration tests for: /api/auth', function () {
                     console.error(err);
                     reject(err);
                 });
-        });
+          });
     });
 
     //After each test, stop the server so that errors aren't thrown when other tests are run
@@ -102,13 +102,13 @@ describe('Integration tests for: /api/auth', function () {
                     email: testUser.email,
                     name: testUser.name
                 });
-            });
+          });
     });
     //This tests refresh ability of JSON web token
     it('Should refresh the user JSON Web Token', function () {
         const firstJwtPayload = jsonwebtoken.verify(jwtToken, JWT_SECRET, {
             algorithm: ['HS256'] //Verify the original token
-        });
+             });
         return chai.request(app)
             .post('/api/auth/refresh') //make a fake request to this endpoint
             .set('Authorization', `Bearer ${jwtToken}`) //Make sure the JWT token is indicated in bearer

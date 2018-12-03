@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,26 +8,28 @@
     <link rel="stylesheet" type="text/css" media="screen" href="../style.css" />
     <title>Login Page</title>
 </head>
+
 <body>
     <h1>Login</h1>
-<form id="login-form">
-    <ul class="wrapper">
-        <li class="form-row">
-            <label for="username-txt">
-                 <input id="username-txt" type="text" required placeholder="Username"><br>
-            </label>
-        </li>
-   
-        <li class="form-row">
-         <label for="password-txt">
-                <input id="password-txt" type="password" required placeholder="Password"><br>
-         </label>
-        </li>
-    </ul>
-    <input class= "login_Button" type="submit" value="Login">
-    <p> Demo Account <br> Username: demouser123<br> Password: demouser123 </p>
-</form>
-    <br>
+
+    <form id="login-form">
+        <ul class="wrapper">
+            <li class="form-row">
+                <label for="username-txt">
+                    <input id="username-txt" type="text" required placeholder="Username"><br>
+                </label>
+            </li>
+    
+            <li class="form-row">
+                <label for="password-txt">
+                        <input id="password-txt" type="password" required placeholder="Password"><br>
+                </label>
+            </li>
+        </ul>
+        <input class= "login_Button" type="submit" value="Login">
+        <p> <u>Demo Account</u><br> Username: demouser123<br> Password: demouser123 </p>
+    </form><br>
+
     <nav>
         <a href="/index.html">Back to Home</a>
         <br><br>
@@ -36,7 +39,8 @@
     <script
         src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+    </script>
     <script src="../utilities/cache.module.js"></script>
     <script src="../utilities/http.module.js"></script>
     <script src="./auth.page.js"></script>

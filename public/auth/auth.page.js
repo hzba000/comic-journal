@@ -9,7 +9,7 @@ $(document).ready(onPageLoad);
 function onPageLoad() {
     $('#sign-up-form').submit(onSignUpSubmit);
     $('#login-form').submit(onLoginSubmit);
-}
+};
 
 //Captures user input and utilizes imported HTTP module function for sign up and validation of user
 function onSignUpSubmit(event) {
@@ -37,7 +37,7 @@ function onSignUpSubmit(event) {
             }
         }
     });
-}
+};
 
 //Captures user input and utilizes imported HTTP module function for login and validation of user
 function onLoginSubmit(event) {
@@ -61,4 +61,4 @@ function onLoginSubmit(event) {
             alert('Incorrect username or password. Please try again.');
         }
     });
-}
+};

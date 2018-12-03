@@ -13,7 +13,7 @@ function createJwtToken(user) {
         expiresIn: JWT_EXPIRY,
         algorithm: 'HS256'
     });
-}
+};
 
 //Sends credentials for JWT token tradeoff
 authRouter.post('/login', localPassportMiddleware, (request, response) => {

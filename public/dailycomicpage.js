@@ -5,13 +5,12 @@ let url = `https://cors-anywhere.herokuapp.com/https://xkcd.com/${Math.floor(Mat
 //On Page Load, checks to see if user wants to use a custom comic, if not, getComic is executed
 function customCheck(){
     customURL = prompt("If you want to use your own comic, feed me a comic image url, otherwise press OK");
-    console.log(customURL);
-    getComic()
+    getComic();
 }
 
 //Gets comic for display, sets date, sends data to displayDataApi for display
 function getComic(){
-    $.getJSON(url, displayDataApi)
+    $.getJSON(url, displayDataApi);
     displayDate();
 }
 
@@ -26,15 +25,18 @@ function is_url(str){
 function displayDataApi(data){
     let test = is_url(customURL); //validates that an image has been submitted
     if(test == true){data.img = customURL;}
-    else if(test ==false){customURL = data.img;}
+    else if(test ==false){
+        customURL = data.img;
+        alert("A comic is being generated for you. If you tried to use your own comic, try again with a valid url");
+    }
     const comic_image = data.img;
     comic_image_global = comic_image;
-    console.log(comic_image);
     $('.ComicHome').html(`<img src = "${customURL}" alt="cartoon strip" onerror="this.src = '${data.img}'">`);
+    //Also, an error will be thrown and this will be used to trigger image reassignment
 }
 
 //When submit form, make a POST to db
-$('#TextHolderForm').on('submit', function(event){
+$('.TextHolderForm').on('submit', function(event){
     event.preventDefault();
         const userSubmission = $('#TextHolder').val();
         const data = { title: `${comic_image_global}`, content: `${userSubmission}`};
@@ -48,11 +50,9 @@ $('#TextHolderForm').on('submit', function(event){
                 xhr.setRequestHeader('Authorization', `Bearer ${localStorage.jwtToken}`);
             },
             success: (response) => {
-                console.log("POSTED!");
             },
 
             error: (err) => {
-                console.log("NOT POSTED");
             }
 
         });
@@ -68,17 +68,17 @@ function dropDown() {
 
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
+    if (!event.target.matches('.dropbtn')) {
 
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+        }
+        }
     }
-  }
 }
 
 //DROP DOWN MENU STUFF END!
@@ -90,18 +90,9 @@ function displayDate(){
     var dd = today.getDate();
     var mm = today.getMonth()+1; //January is 0!
     var yyyy = today.getFullYear();
-    
-    if(dd<10) {
-        dd = '0'+dd
-    } 
-    
-    if(mm<10) {
-        mm = '0'+mm
-    } 
-    
+    if(dd<10) {dd = '0'+dd} 
+    if(mm<10) {mm = '0'+mm} 
     today = mm + '/' + dd + '/' + yyyy;
-    console.log("today is" + today);
-
     $('.date').html(today);
 }
 

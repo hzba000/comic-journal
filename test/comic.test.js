@@ -32,7 +32,6 @@ describe('Integration tests for: /api/comic', function () {
                     username: testUser.username,
                     password: hashedPassword
                 }).catch(err => {
-                    console.error(err);
                     throw new Error(err);
                 });
             })
@@ -64,10 +63,9 @@ describe('Integration tests for: /api/comic', function () {
                 }
                 return Comic.insertMany(seedData)
                     .catch(err => {
-                        console.error(err);
                         throw new Error(err);
-                    });
-            });
+                });
+        });
     });
 
     afterEach(function () {
@@ -78,7 +76,6 @@ describe('Integration tests for: /api/comic', function () {
                     resolve(result);
                 })
                 .catch(err => {
-                    console.error(err);
                     reject(err);
                 });
         });
@@ -107,7 +104,7 @@ describe('Integration tests for: /api/comic', function () {
                     email: testUser.email,
                     name: testUser.name
                 });
-            });
+        });
     });
 
     it('Should return a specific comic', function () {//The main difference here is the addition of a parameterized id
@@ -132,7 +129,7 @@ describe('Integration tests for: /api/comic', function () {
                     title: foundComic.title,
                     content: foundComic.content
                 });
-            });
+        });
     });
 
     it('Should update a specific comic', function () {//We should get a 204 code back (empty response object)
@@ -161,7 +158,7 @@ describe('Integration tests for: /api/comic', function () {
                     title: newComicData.title,
                     content: newComicData.content
                 });
-            });
+        });
     });
 
     it('Should delete a specific comic', function () {//We chould get back a 204 code back (empty response object)

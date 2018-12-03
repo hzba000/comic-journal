@@ -1,3 +1,5 @@
+/*Unresolved issue with flexbox in library view, sometimes grid is not aligned, and empty space between posts can be clicked on, triggering an error*/
+
 *{
   font-family: 'Autour One', sans-serif;
 }
@@ -178,7 +180,7 @@ margin-bottom: 10px;
 
 /* previouspost specific */
 
-.test{
+.individual-lib-item{
   display:flex;
   flex-direction:row;
   flex-wrap:wrap;
@@ -248,11 +250,11 @@ hidden{
 
 /*End Buttons*/
 
-.test img{
+.individual-lib-item img{
   cursor: pointer;
 }
 
-.test img:hover{
+.individual-lib-item img:hover{
   outline: 5px solid #f6b93b;
 }
 

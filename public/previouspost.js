@@ -5,7 +5,7 @@ let userData = null;
 //On page load this calls the function that handles our initial AJAX get request and feeds it a callback function
     function setupArrival(){
         getDataApi(prepareDataApi);
-        alert("Okay! Redirecting to your post library!");
+        alert("Okay! Redirecting to your previous posts!");
         $('.updatePost').attr('hidden', true);
 } 
 
@@ -22,7 +22,6 @@ let userData = null;
         },
         success: prepareDataApi,
         error: err => {
-            console.error(err);
             if (onError) {
                 onError(err);
             }
@@ -34,7 +33,6 @@ let userData = null;
     function prepareDataApi(data){
         //Sorts data in database by creation date
         data.sort(compare);
-        console.log(data);
   
         //clones data to global variable
         userData = data;
@@ -82,6 +80,7 @@ let userData = null;
                 counter = 0;
                 $('#TextHolder').val(`${userData[0].content}`);
                 $('.ComicHome').html(`<img src = "${userData[0].title}" alt="cartoon strip">`);
+                alert("You are now on your earliest post.");
         }
             //If they are not on their first post, match the comic and content to the post with the counter value that matches data array
             else{
@@ -90,7 +89,6 @@ let userData = null;
                 $('.date').html(`${new Date(userData[counter].createDate).toLocaleDateString()}`); //Set the date
                 $(window).scrollTop(0); // Scroll to top so comic has better visibility
         }           
-console.log(counter);
     })
 }
 
@@ -111,8 +109,8 @@ console.log(counter);
 
             //If user is on their most recent post, display most recent comic and content
             if(counter >= userData.length){
-                $('#TextHolder').val(`${userData[userData.length-1].content}`)
-                $('.ComicHome').html(`<img src = "${userData[userData.length-1].title}" alt="cartoon strip">`)
+                $('#TextHolder').val(`${userData[userData.length-1].content}`);
+                $('.ComicHome').html(`<img src = "${userData[userData.length-1].title}" alt="cartoon strip">`);
 
             //Makes sure counter stays at same position as data array
             counter = userData.length -1;
@@ -125,7 +123,6 @@ console.log(counter);
             $('.date').html(`${new Date(userData[counter].createDate).toLocaleDateString()}`);//Displays date
             $(window).scrollTop(0);//Scrolls to top to clearly display comic to user
         }
-console.log(counter);
     })
 }
 
@@ -141,7 +138,7 @@ console.log(counter);
 
     function deletePost(){
     $('.deletePost').click(function(){
-        $('#TextHolderForm').on('submit', function(event){
+        $('.TextHolderForm').on('submit', function(event){
             event.preventDefault();
             const data = { id:`${userData[counter].id}`};
             var checkDelete = confirm("Are you sure you want to delete your post?");
@@ -155,17 +152,15 @@ console.log(counter);
                         xhr.setRequestHeader('Authorization', `Bearer ${localStorage.jwtToken}`);
                     },
                     success: (response) => {
-                        console.log("DELETED!");
                     },
             
                     error: (err) => {
-                        console.log("NOT DELETED");
                     }
                         
                 });
                     window.location.reload();
             }
-                $('#TextHolderForm').off('submit');
+                $('.TextHolderForm').off('submit');
         })
     })
 }
@@ -175,7 +170,7 @@ console.log(counter);
         $('.editPost').attr('hidden', false);
         $('.updatePost').attr('hidden', true);
         $('#TextHolder').attr('disabled', true);
-        $('#TextHolderForm').on('submit', function(event){
+        $('.TextHolderForm').on('submit', function(event){
             event.preventDefault();
             const userSubmission = $('#TextHolder').val();
             const data = { id:`${userData[counter].id}`, content: `${userSubmission}`, title:`${userData[counter].title}`};
@@ -188,14 +183,15 @@ console.log(counter);
                     xhr.setRequestHeader('Authorization', `Bearer ${localStorage.jwtToken}`);
                 },
                 success: (response) => {
-                    console.log("UPDATED!");
+                    console.log("UPDATED");
                 },
         
                 error: (err) => {
-                    console.log("NOT UPDATED");
+                    console.log("NOTE UPDATED");
+
                 }
             });
-                $('#TextHolderForm').off('submit');
+                $('.TextHolderForm').off('submit');
                 window.location.reload();
         })
     })
@@ -205,33 +201,30 @@ console.log(counter);
     function displayListViewImage(){
         $('.listView').click(function(){
             $('.PostHolder').attr('hidden', true);
-            $(".test").html('');
+            $(".individual-lib-item").html('');
             for(let i = userData.length-1; i > -1; i--){
                 if(userData[i].content.length > 25){
-                    $(".test").append(`<div class="${i}"><p>${i}</p><img class="${i}" src='${userData[i].title}' alt="comic-${i}"'><p class="${i}">${userData[i].content.substring(0,25)+'...'}</p></div>`)
+                    $(".individual-lib-item").append(`<div class="${i}"><p>${i}</p><img class="${i}" src='${userData[i].title}' alt="comic-${i}"'><p class="${i}">${userData[i].content.substring(0,25)+'...'}</p></div>`);
             }
                 else{
-                    $(".test").append(`<div class="${i}"><p>${i}</p><img class="${i}" src='${userData[i].title}' alt="comic-${i}"'><p class="${i}">${userData[i].content}</p></div>`)
+                    $(".individual-lib-item").append(`<div class="${i}"><p>${i}</p><img class="${i}" src='${userData[i].title}' alt="comic-${i}"'><p class="${i}">${userData[i].content}</p></div>`);
             }
         }
-            $(window).scrollTop(0);
+            $(window).scrollTop(0); //Directs you to top, where comic clicked on is displayed
 
     })
 }
 
     function clickListViewImage(){
-    $('.test').on('click', function(event){
+    $('.individual-lib-item').on('click', function(event){
             event.stopPropagation();
             window.scrollTo(0,0);
             $('.PostHolder').attr('hidden', false);
             $('.listHolder').attr('hidden', false);
             let postValue = ($(event.target).attr('class'));
-            console.log(postValue);
             counter = postValue;
-            $('.ComicHome').html(`<img src = "${userData[counter].title}" alt="comic-${counter}">`)
-            $('#TextHolder').val(
-                `${userData[counter].content}`
-        ) 
+            $('.ComicHome').html(`<img src = "${userData[counter].title}" alt="comic-${counter}">`);
+            $('#TextHolder').val(`${userData[counter].content}`); 
     })
 }
 
@@ -246,15 +239,15 @@ console.log(counter);
         window.onclick = function(event) {
             if (!event.target.matches('.dropbtn')) {
         
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                    }
                 }
             }
-        }
 }
   
   //DROP DOWN MENU STUFF END!

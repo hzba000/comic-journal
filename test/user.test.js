@@ -21,7 +21,6 @@ describe('Integration tests for: /api/user', function () {
         return User.create(testUser)
             .then(() => { })
             .catch(err => {
-                console.error(err);
             });
     });
 
@@ -33,7 +32,6 @@ describe('Integration tests for: /api/user', function () {
                     resolve(result);
                 })
                 .catch(err => {
-                    console.error(err);
                     reject(err);
                 });
         });
@@ -56,7 +54,7 @@ describe('Integration tests for: /api/user', function () {
                 expect(res.body.name).to.equal(newUser.name);
                 expect(res.body.email).to.equal(newUser.email);
                 expect(res.body.username).to.equal(newUser.username);
-            });
+        });
     });
 
     function createFakerUser() {
