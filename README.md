@@ -2,7 +2,7 @@
 <img src="./public/images/tiger.png" height="100px">
 
 <h2> Live Page </h2>
-<a href="http://haunted-corpse-92171.herokuapp.com"> Click here! </a>
+<a href="http://haunted-corpse-92171.herokuapp.com" target="_blank"> Click here! </a>
 
 <h2><u> Summary </u></h2>
 <p> This is an app to help develop a regular writing habit by providing comic strips as inspiration prompts!</p>
