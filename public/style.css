@@ -281,6 +281,7 @@ header{
 
 header h1{
   color: white;
+  background-color: navy;
   margin-right:70px;
 
 }
@@ -316,7 +317,7 @@ fieldset{
 /* Navbar container */
 .navbar {
     overflow: hidden;
-    background-color: #006675;
+    background-color: navy;
     font-family: Arial;
   }
   
