@@ -303,6 +303,7 @@ label{
 
 fieldset{
     display:inline-block;
+    border-color:transparent;
 }
 
 .previousPost{
@@ -396,7 +397,7 @@ fieldset{
     .ComicHome img{
       max-width:350px;
       margin-bottom: 10px;
-
+      border: 3px black solid;
     }
     
     #TextHolder{
