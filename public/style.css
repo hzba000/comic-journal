@@ -13,7 +13,7 @@
 .badge_container{
   background-color:white;
   padding: 20px;
-
+  border: 3px black solid;
 }
 
 .profile_row{
