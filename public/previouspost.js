@@ -204,10 +204,10 @@ let userData = null;
             $(".individual-lib-item").html('');
             for(let i = userData.length-1; i > -1; i--){
                 if(userData[i].content.length > 25){
-                    $(".individual-lib-item").append(`<div class="${i}"><p>${i}</p><img class="${i}" src='${userData[i].title}' alt="comic-${i}"'><p class="${i}">${userData[i].content.substring(0,25)+'...'}</p></div>`);
+                    $(".individual-lib-item").append(`<div class="${i}"><img class="${i}" src='${userData[i].title}' alt="comic-${i}"'><p class="${i}">${userData[i].content.substring(0,25)+'...'}</p></div>`);
             }
                 else{
-                    $(".individual-lib-item").append(`<div class="${i}"><p>${i}</p><img class="${i}" src='${userData[i].title}' alt="comic-${i}"'><p class="${i}">${userData[i].content}</p></div>`);
+                    $(".individual-lib-item").append(`<div class="${i}"><img class="${i}" src='${userData[i].title}' alt="comic-${i}"'><p class="${i}">${userData[i].content}</p></div>`);
             }
         }
             $(window).scrollTop(0); //Directs you to top, where comic clicked on is displayed
