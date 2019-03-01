@@ -3,7 +3,8 @@ body{
 }
 
 .title{
-    color:slateblue;
+    color:brown;
+    border-bottom: 3px goldenrod dotted;
 }
 
 @media only screen and (max-width:325px){
