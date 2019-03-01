@@ -304,7 +304,9 @@ label{
 
 fieldset{
     display:inline-block;
-    border-color:transparent;
+    border-left: 3px navy dashed;
+    border-bottom: 3px navy dashed;
+    border-right: 3px navy dashed;
 }
 
 .previousPost{
@@ -315,7 +317,7 @@ fieldset{
 /* Navbar container */
 .navbar {
     overflow: hidden;
-    background-color: #006675;
+    background-color: navy;
     font-family: Arial;
   }
   
