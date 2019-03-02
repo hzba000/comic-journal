@@ -193,8 +193,8 @@ nav{
   display:flex;
   flex-direction:row;
   flex-wrap:wrap;
-  justify-content: space-between;
-  margin:10px;
+  justify-content: space-evenly;
+  /* margin:10px; */
   font-size: 12px;
 }
 
