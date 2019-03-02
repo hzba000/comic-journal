@@ -465,6 +465,12 @@ fieldset{
       font-size:25px;
     }
 
+    .listHolder img{
+      height: 250px;
+      width: 250px;
+      object-fit: cover;
+      border: 5px navy solid;
+    }
 
   }
 
