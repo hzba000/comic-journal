@@ -217,6 +217,7 @@ let userData = null;
 
     function clickListViewImage(){
     $('.individual-lib-item').on('click', function(event){
+            event.stopPropagation();
             let postValue = ($(event.target).attr('class'));
             counter = postValue;
             let counterValidation = isNaN(counter);
@@ -224,7 +225,6 @@ let userData = null;
                 console.log("Not a valid number, so do nothing");
             }
             else{
-                event.stopPropagation();
                 window.scrollTo(0,0);
                 $('.PostHolder').attr('hidden', false);
                 $('.listHolder').attr('hidden', false);
