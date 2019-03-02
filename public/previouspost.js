@@ -223,8 +223,13 @@ let userData = null;
             $('.listHolder').attr('hidden', false);
             let postValue = ($(event.target).attr('class'));
             counter = postValue;
-            $('.ComicHome').html(`<img src = "${userData[counter].title}" alt="comic-${counter}">`);
-            $('#TextHolder').val(`${userData[counter].content}`); 
+            if(counter === undefined){
+                //Do nothing
+            }
+            else{
+                $('.ComicHome').html(`<img src = "${userData[counter].title}" alt="comic-${counter}">`);
+                $('#TextHolder').val(`${userData[counter].content}`); 
+            }
     })
 }
 
