@@ -1,5 +1,9 @@
 /*Unresolved issue with flexbox in library view, sometimes grid is not aligned, and empty space between posts can be clicked on, triggering an error*/
 
+html, body{
+  margin:0px;
+}
+
 *{
   font-family: 'Autour One', sans-serif;
 }
