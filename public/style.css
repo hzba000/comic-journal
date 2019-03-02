@@ -259,9 +259,9 @@ hidden{
   cursor: pointer;
 }
 
-.individual-lib-item img:hover{
+/* .individual-lib-item img:hover{
   outline: 5px solid #f6b93b;
-}
+} */
 
 .gallery-frame{
   border-radius: 25px;
