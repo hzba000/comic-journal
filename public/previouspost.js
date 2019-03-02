@@ -222,7 +222,7 @@ let userData = null;
             counter = postValue;
             let counterValidation = isNaN(counter);
             if(counterValidation === true){
-                console.log("Not a valid number, so do nothing");
+                return null;
             }
             else{
                 window.scrollTo(0,0);
