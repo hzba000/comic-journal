@@ -223,8 +223,8 @@ let userData = null;
             $('.listHolder').attr('hidden', false);
             let postValue = ($(event.target).attr('class'));
             counter = postValue;
-            if(counter === null){
-                //Do nothing
+            if(counter === NaN){
+                console.log("Not a valid number, so do nothing");
             }
             else{
                 $('.ComicHome').html(`<img src = "${userData[counter].title}" alt="comic-${counter}">`);
