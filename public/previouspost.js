@@ -223,7 +223,7 @@ let userData = null;
             $('.listHolder').attr('hidden', false);
             let postValue = ($(event.target).attr('class'));
             counter = postValue;
-            if(counter === NaN){
+            if(typeOf(counter) === NaN){
                 console.log("Not a valid number, so do nothing");
             }
             else{
