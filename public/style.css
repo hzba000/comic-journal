@@ -272,6 +272,10 @@ hidden{
   margin-bottom: 30px;
 }
 
+.gallery-frame:hover{
+  background-color: #f6b93b;
+}
+
 /* previouspost specific end */
 
 header{
