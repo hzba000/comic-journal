@@ -216,7 +216,7 @@ let userData = null;
 }
 
     function clickListViewImage(){
-    $('.gallery-item').on('click', function(event){
+    $('.gallery-frame').on('click', function(event){
             event.stopPropagation();
             window.scrollTo(0,0);
             $('.PostHolder').attr('hidden', false);
