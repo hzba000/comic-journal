@@ -199,7 +199,7 @@ nav{
   flex-direction:row;
   flex-wrap:wrap;
   justify-content: space-between;
-  margin:10px;
+  /* margin:10px; */
 }
 
 
