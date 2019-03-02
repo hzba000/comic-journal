@@ -307,9 +307,9 @@ label{
 
 fieldset{
     display:inline-block;
-    border-left: 3px navy dashed;
-    border-bottom: 3px navy dashed;
-    border-right: 3px navy dashed;
+    border: 3px navy dashed;
+    /* border-bottom: 3px navy dashed;
+    border-right: 3px navy dashed; */
     background-color: deepskyblue;
 }
 
