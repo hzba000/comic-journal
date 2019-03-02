@@ -223,7 +223,7 @@ let userData = null;
             $('.listHolder').attr('hidden', false);
             let postValue = ($(event.target).attr('class'));
             counter = postValue;
-            if(counter === undefined){
+            if(counter === null){
                 //Do nothing
             }
             else{
