@@ -223,7 +223,8 @@ let userData = null;
             $('.listHolder').attr('hidden', false);
             let postValue = ($(event.target).attr('class'));
             counter = postValue;
-            if(userData[counter].title === undefined){
+            let counterValidation = isNaN(counter);
+            if(counterValidation === true){
                 console.log("Not a valid number, so do nothing");
             }
             else{
