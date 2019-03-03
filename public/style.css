@@ -476,9 +476,13 @@ fieldset{
       border: 5px navy solid;
     }
 
+    .index_border{
+      max-width:275px;
+    }
+
   }
 
-  /* Auth Pages Test */
+  /* Auth Pages CSS*/
 
   .login {
     width: 300px;
