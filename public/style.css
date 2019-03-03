@@ -158,13 +158,13 @@ nav{
   border-radius: 5px;
   display: inline-block;
   border: none;
+  -webkit-appearance: none;
 }
 .signup_Button:hover, .login_Button:hover, .create_Account_Button:hover {
   background: brown;
   letter-spacing: 1px;
   -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
   -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-  -webkit-appearance: none;
   box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
   transition: all 0.4s ease 0s;
   cursor:pointer;
