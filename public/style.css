@@ -490,9 +490,9 @@ fieldset{
     line-height: 30px;
     font-size: 25px;
     font-weight: 300;
-    color: #ADADAD;
     text-align:center;
-    background: #f7f7f7;
+    background-color: navy;
+    color: white;
   }
   
   .login-input {
