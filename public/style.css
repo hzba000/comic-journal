@@ -479,7 +479,17 @@ fieldset{
     .index_border{
       max-width:275px;
     }
+  }
 
+  @media only screen and (min-width:750px){
+    .individual-lib-item {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      margin: 10px;
+      font-size: 12px;
+  }
   }
 
   /* Auth Pages CSS*/
