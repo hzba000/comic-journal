@@ -23,7 +23,7 @@ function getDataApi() {
 }
 
 function displayDataApi(data){
-    if(data.length===0){$('.badges').append(`<h2>You haven't achieved anything yet!<br>Write some posts!</h2><div><img src="./images/question_stick.png" alt="question-stick"></div>`);}
+    if(data.length===0){$('.badges').append(`<h2>Write some posts to start getting achievements!</h2><div><img src="./images/question_stick.png" alt="question-stick"></div>`);}
     if (data.length > 0){$('.badges').append(`<div class="profile_row"><img src="./images/worm.jpg" alt="worm-award" height="50px" width="50px">  <span>Written your First Post!</span><br></div>`);}
     if (data.length >=5){$('.badges').append(`<div class="profile_row"><img src="./images/duck.png" alt="duck-award"height="50px" width="50px">  <span>Written Five Posts!</span><br></div>`);}
     if (data.length >=10){$('.badges').append(`<div class="profile_row"><img src="./images/penguin.gif" alt="penguin-award"height="50px" width="50px">  <span>Written Ten Posts!</span><br></div>`);}
