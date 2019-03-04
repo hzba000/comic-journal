@@ -51,11 +51,19 @@ let userData = null;
 
 //This sets up our initial display, it also sets up our counter for navigation throughout the app
     function initialDisplay(){
-        //Matches counter to most recent comic in array
-        counter = userData.length -1
-        //Sets initial comic and content (Most recent appears first because of sort)
-        $('#TextHolder').val(`${userData[userData.length-1].content}`)
-        $('.ComicHome').html(`<img src = "${userData[userData.length-1].title}" alt="cartoon strip">`);
+        if(userData.length <1){
+            $('.fieldset-container').html('');
+            $('.fieldset-container').append(`<h4>Add a post in the menu to get started!</h4><img src="./images/question_stick.png" alt="question-stick" />`)
+        }
+
+        if(userData.length>0){
+            //Matches counter to most recent comic in array
+            counter = userData.length -1
+            //Sets initial comic and content (Most recent appears first because of sort)
+            $('#TextHolder').val(`${userData[userData.length-1].content}`)
+            $('.ComicHome').html(`<img src = "${userData[userData.length-1].title}" alt="cartoon strip">`);
+
+        }
 }
 
 //Navigation
