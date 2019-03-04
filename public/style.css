@@ -168,11 +168,6 @@ border: 3px black solid;
 
   /* Auth Pages CSS End */
 
-
-  
-
-
-
 /* Index specific */
 
 .signup_Button, .login_Button, .create_Account_Button {
@@ -334,8 +329,6 @@ label{
 fieldset{
     display:inline-block;
     border: 3px navy dashed;
-    /* border-bottom: 3px navy dashed;
-    border-right: 3px navy dashed; */
     background-color: deepskyblue;
 }
 
