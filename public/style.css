@@ -497,3 +497,6 @@ fieldset{
     }
   }
 
+.draw-loader{
+  background-color:white;
+}

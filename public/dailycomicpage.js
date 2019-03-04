@@ -5,7 +5,8 @@ let url = `https://cors-anywhere.herokuapp.com/https://xkcd.com/${Math.floor(Mat
 //On Page Load, checks to see if user wants to use a custom comic, if not, getComic is executed
 function customCheck(){
     customURL = prompt("If you want to use your own comic, feed me a comic image url, otherwise press OK");
-    // $('.cat-loader').removeClass('hidden'); --Loader setup in case needed, but data loads so fast that it is actually distracting
+    // loader setup
+    $('.draw-loader').removeClass('hidden');
     getComic();
 }
 
@@ -28,7 +29,7 @@ function displayDataApi(data){
     if(test == true){data.img = customURL;}
     else if(test ==false){
         customURL = data.img;
-        alert("A comic is being generated for you. If you tried to use your own comic, you can try again. Just click 'Add a comic' in the menu.");
+        alert("Your comic is ready, press okay to start writing! If you tried to use your own comic, you can try again. Just click 'Add a comic' in the menu.");
     }
     const comic_image = data.img;
     comic_image_global = comic_image;
