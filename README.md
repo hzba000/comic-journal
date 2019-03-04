@@ -32,7 +32,6 @@
 <img src = "./screenshots/landing_page.png">
 <img src = "./screenshots/submit_comic.png">
 <img src = "./screenshots/library.png">
-<img src = "./screenshots/achievements.png">
 <img src = "./screenshots/submitted.png">
 
 
