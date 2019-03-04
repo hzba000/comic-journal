@@ -33,4 +33,4 @@ function displayDataApi(data){
     if (data.length >= 100){$('.badges').append(`<div class="profile_row"><img src="./images/top_hat.png" alt="top-hat-award" height="50px" width="50px">  <span>Written One Hundred Posts!</span><br></div>`);}
 }
 
-$(getDataApi);
+$(getDataApi); 
