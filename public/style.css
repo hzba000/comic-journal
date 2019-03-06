@@ -214,7 +214,7 @@ border: 3px black solid;
   display:flex;
   flex-direction:row;
   flex-wrap:wrap;
-  justify-content: space-evenly;
+  justify-content: space-around;
   /* margin:10px; */
   font-size: 12px;
 }
