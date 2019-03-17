@@ -1,6 +1,6 @@
 let comic_image_global = null;
 let customURL = null;
-let url = `https://cors-anywhere.herokuapp.com/https://xkcd.com/${Math.floor(Math.random() * 614)}/info.0.json`;
+let url = `https://sheltered-oasis-13181.herokuapp.com/https://xkcd.com/${Math.floor(Math.random() * 614)}/info.0.json`;
 
 //On Page Load, checks to see if user wants to use a custom comic, if not, getComic is executed
 function customCheck(){
